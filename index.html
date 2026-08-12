@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="ADEPT accelerates robot dexterity through reinforcement learning pre-training and post-training."
+    />
+    <meta name="theme-color" content="#f0f0e8" />
+    <meta property="og:title" content="ADEPT — Accelerating Dexterity" />
+    <meta
+      property="og:description"
+      content="Accelerating Dexterity via Pre-Training and Post-Training using Reinforcement Learning."
+    />
+    <meta property="og:type" content="website" />
+    <title>ADEPT — Accelerating Dexterity</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <script>document.documentElement.classList.add("js");</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="#top" aria-label="ADEPT home">
+        <span class="wordmark-mark" aria-hidden="true"></span>
+        ADEPT
+      </a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#overview">Overview</a>
+        <a href="#method">Method</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#results">Results</a>
+      </nav>
+      <a class="nav-cta" href="#paper">Read paper <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-orbit orbit-one" aria-hidden="true"></div>
+        <div class="hero-orbit orbit-two" aria-hidden="true"></div>
+        <p class="eyebrow reveal">Research preview · 2026</p>
+        <h1 class="reveal">
+          <span class="title-acronym">ADEPT:</span>
+          Accelerating Dexterity via Pre-Training and Post-Training using
+          Reinforcement Learning
+        </h1>
+        <div class="hero-authors reveal">
+          <p class="hero-authors-label">Authors</p>
+          <p class="author-list">
+            <span>Jayjun Lee<sup>1,2</sup></span>
+            <span>Jessica Yin<sup>1</sup></span>
+            <span>Asif Rana<sup>1</sup></span>
+            <span>Nicholas Blauch<sup>1</sup></span>
+            <span>Sam Mady<sup>1</sup></span>
+            <span>Mohak Bhardwaj<sup>1</sup></span>
+            <span>Nima Fazeli<sup>2</sup></span>
+            <span>Nathan Ratliff<sup>1</sup></span>
+            <span>Karl Van Wyk<sup>1</sup></span>
+            <span>Ankur Handa<sup>1</sup></span>
+          </p>
+          <div class="affiliation-lockup" aria-label="Research affiliations">
+            <a class="affiliation-logo nvidia-logo" href="https://www.nvidia.com/" target="_blank" rel="noopener noreferrer" aria-label="NVIDIA">
+              <span class="affiliation-number">1</span>
+              <img src="assets/nvidia-logo.svg" alt="NVIDIA" />
+            </a>
+            <span class="affiliation-divider" aria-hidden="true"></span>
+            <a class="affiliation-logo michigan-logo" href="https://robotics.umich.edu/" target="_blank" rel="noopener noreferrer" aria-label="Michigan Robotics, University of Michigan">
+              <span class="affiliation-number">2</span>
+              <span class="michigan-logo-crop">
+                <img src="assets/michigan-robotics-logo.png" alt="Michigan Robotics" />
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="hero-actions publication-links reveal" aria-label="Publication links">
+          <!-- Replace the href values below when the public URLs are available. -->
+          <a class="publication-button primary" href="#paper">
+            <span class="publication-icon" aria-hidden="true">PDF</span>
+            <span><strong>Paper</strong><small>Draft preview</small></span>
+            <span class="publication-arrow" aria-hidden="true">↓</span>
+          </a>
+          <span class="publication-button is-pending" aria-disabled="true">
+            <span class="publication-icon" aria-hidden="true">A</span>
+            <span><strong>arXiv</strong><small>Coming soon</small></span>
+            <span class="publication-arrow" aria-hidden="true">↗</span>
+          </span>
+          <span class="publication-button is-pending" aria-disabled="true">
+            <span class="publication-icon" aria-hidden="true">X</span>
+            <span><strong>X thread</strong><small>Coming soon</small></span>
+            <span class="publication-arrow" aria-hidden="true">↗</span>
+          </span>
+          <span class="publication-button is-pending" aria-disabled="true">
+            <span class="publication-icon code-icon" aria-hidden="true">&lt;/&gt;</span>
+            <span><strong>Code</strong><small>Coming soon</small></span>
+            <span class="publication-arrow" aria-hidden="true">↗</span>
+          </span>
+        </div>
+        <p class="hero-deck reveal">
+          ADEPT turns reusable dexterous priors into precise, long-horizon skills
+          that transfer from simulation to real, high-DoF robot hands.
+        </p>
+      </section>
+
+      <section class="feature-film content-wide reveal" aria-label="ADEPT overview video placeholder">
+        <div class="film-placeholder media-placeholder" data-video-placeholder>
+          <div class="media-noise"></div>
+          <div class="film-copy">
+            <span class="media-label">01 · Overview film</span>
+            <p>From reposing<br />to real-world dexterity.</p>
+          </div>
+          <button class="play-button" type="button" aria-label="Video coming soon">
+            <span aria-hidden="true">▶</span>
+          </button>
+          <span class="media-status">Video coming soon</span>
+        </div>
+        <p class="caption">ADEPT overview · Replace this block with your project reel.</p>
+      </section>
+
+      <div class="article-shell">
+        <aside class="contents" aria-label="Page contents">
+          <p>Contents</p>
+          <ol>
+            <li><a href="#overview">A faster path to dexterity</a></li>
+            <li><a href="#method">The ADEPT recipe</a></li>
+            <li><a href="#capabilities">Capabilities</a></li>
+            <li><a href="#results">Results</a></li>
+            <li><a href="#paper">Paper &amp; citation</a></li>
+          </ol>
+        </aside>
+
+        <article class="article">
+          <section id="overview" class="article-section reveal">
+            <p class="section-kicker">The idea</p>
+            <h2>A faster path to<br /><em>general dexterity.</em></h2>
+            <p class="lead">
+              Dexterous robots repeatedly need the same core abilities—reach,
+              grasp, lift, reorient, and transport. Yet conventional RL learns
+              them again from scratch for every downstream task.
+            </p>
+            <p>
+              ADEPT first learns this shared foundation through a generic object
+              reposing task. It then post-trains task specialists while preserving
+              the pretrained behavior, and distills them into perceptive policies
+              for zero-shot sim-to-real deployment.
+            </p>
+            <blockquote>
+              <p>Learn dexterity once. Build every new behavior on top.</p>
+            </blockquote>
+          </section>
+
+          <section id="method" class="article-section reveal">
+            <p class="section-kicker">The method</p>
+            <h2>The ADEPT recipe</h2>
+            <p class="lead">
+              Four stages carry a policy from broad simulated experience to
+              contact-rich manipulation from raw visual and tactile perception.
+            </p>
+
+            <div class="recipe" aria-label="ADEPT training pipeline">
+              <div class="recipe-card recipe-card-dark">
+                <span class="recipe-number">01</span>
+                <div>
+                  <h3>Pre-train</h3>
+                  <p>Learn reaching, grasping, lifting, in-hand reorientation, and transport through generic object reposing.</p>
+                </div>
+                <span class="recipe-tag">Broad experience</span>
+              </div>
+              <div class="recipe-connector" aria-hidden="true">→</div>
+              <div class="recipe-card recipe-card-accent">
+                <span class="recipe-number">02</span>
+                <div>
+                  <h3>Post-train</h3>
+                  <p>Preserve the prior with actor distillation, critic warm-up, and conservative PPO updates.</p>
+                </div>
+                <span class="recipe-tag">Focused practice</span>
+              </div>
+              <div class="recipe-connector" aria-hidden="true">→</div>
+              <div class="recipe-card recipe-card-light">
+                <span class="recipe-number">03</span>
+                <div>
+                  <h3>Distill</h3>
+                  <p>Transfer state-based teachers into stereo RGB or visuo-tactile students through a two-stage curriculum.</p>
+                </div>
+                <span class="recipe-tag">Raw perception</span>
+              </div>
+              <div class="recipe-connector" aria-hidden="true">→</div>
+              <div class="recipe-card recipe-card-deploy">
+                <span class="recipe-number">04</span>
+                <div>
+                  <h3>Deploy</h3>
+                  <p>Run the perceptive policy zero-shot on real 23-DoF and 29-DoF arm–hand systems.</p>
+                </div>
+                <span class="recipe-tag">Sim to real</span>
+              </div>
+            </div>
+          </section>
+        </article>
+      </div>
+
+      <section id="capabilities" class="capabilities content-wide">
+        <div class="section-heading reveal">
+          <div>
+            <p class="section-kicker">Capabilities</p>
+            <h2>Dexterity in motion</h2>
+          </div>
+          <p>
+            Continuous policies coordinate the complete task rather than relying on
+            fixtures, scripted stage decomposition, or object-pose estimates.
+          </p>
+        </div>
+
+        <div class="media-grid">
+          <figure class="media-card media-card-wide reveal">
+            <div class="media-placeholder tone-lime" data-video-placeholder>
+              <span class="media-index">01</span>
+              <div class="object-shape shape-ring" aria-hidden="true"></div>
+              <button class="play-button small" type="button" aria-label="Video coming soon"><span>▶</span></button>
+              <span class="media-status">Add video</span>
+            </div>
+            <figcaption><strong>FMB peg insertion</strong><span>Reach · grasp · reorient · insert</span></figcaption>
+          </figure>
+          <figure class="media-card reveal">
+            <div class="media-placeholder tone-blue" data-video-placeholder>
+              <span class="media-index">02</span>
+              <div class="object-shape shape-cube" aria-hidden="true"></div>
+              <button class="play-button small" type="button" aria-label="Video coming soon"><span>▶</span></button>
+              <span class="media-status">Add video</span>
+            </div>
+            <figcaption><strong>Dish-rack placement</strong><span>Flip · regrasp · transport</span></figcaption>
+          </figure>
+          <figure class="media-card reveal">
+            <div class="media-placeholder tone-coral" data-video-placeholder>
+              <span class="media-index">03</span>
+              <div class="object-shape shape-cylinder" aria-hidden="true"></div>
+              <button class="play-button small" type="button" aria-label="Video coming soon"><span>▶</span></button>
+              <span class="media-status">Add video</span>
+            </div>
+            <figcaption><strong>Emergent recovery</strong><span>Drop · regrasp · continue</span></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="results" class="results-section">
+        <div class="content-wide">
+          <div class="section-heading reveal">
+            <div>
+              <p class="section-kicker">Results</p>
+              <h2>Learning that compounds</h2>
+            </div>
+            <p>
+              ADEPT amortizes its dexterous foundation across downstream tasks and
+              unlocks fast, continuous manipulation on two distinct embodiments.
+            </p>
+          </div>
+
+          <div class="metrics reveal">
+            <div class="metric">
+              <span class="metric-value">2–14<span>×</span></span>
+              <p>faster execution</p>
+              <small>vs. the staged FMB pipeline</small>
+            </div>
+            <div class="metric">
+              <span class="metric-value">5–10<span>s</span></span>
+              <p>end-to-end behavior</p>
+              <small>one continuous learned policy</small>
+            </div>
+            <div class="metric">
+              <span class="metric-value">23<span>/</span>29</span>
+              <p>degrees of freedom</p>
+              <small>KUKA–Allegro · Flexiv–Sharpa</small>
+            </div>
+          </div>
+
+          <div class="chart-card reveal">
+            <div class="chart-header">
+              <div>
+                <p>Training efficiency</p>
+              <span>Downstream task progress over environment steps</span>
+              </div>
+              <div class="chart-legend"><span class="legend-adept">ADEPT</span><span class="legend-base">From scratch</span></div>
+            </div>
+            <svg class="chart" viewBox="0 0 900 380" role="img" aria-label="Placeholder chart comparing ADEPT with training from scratch">
+              <g class="grid-lines">
+                <line x1="70" y1="40" x2="70" y2="320" />
+                <line x1="70" y1="320" x2="860" y2="320" />
+                <line x1="70" y1="250" x2="860" y2="250" />
+                <line x1="70" y1="180" x2="860" y2="180" />
+                <line x1="70" y1="110" x2="860" y2="110" />
+                <line x1="70" y1="40" x2="860" y2="40" />
+              </g>
+              <path class="chart-area" d="M70 307 C150 280 200 200 290 150 S450 72 560 58 S760 48 860 45 L860 320 L70 320 Z" />
+              <path class="chart-line adept-line" d="M70 307 C150 280 200 200 290 150 S450 72 560 58 S760 48 860 45" />
+              <path class="chart-line base-line" d="M70 310 C180 305 260 288 350 250 S530 185 650 150 S780 126 860 112" />
+              <text x="70" y="355">0</text><text x="820" y="355">STEPS</text>
+              <text x="12" y="45">100%</text><text x="30" y="325">0%</text>
+            </svg>
+            <p class="caption">Illustrative web placeholder — replace with the final ADEPT training-progress figure.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="paper" class="paper-section content-wide reveal">
+        <div class="paper-copy">
+          <p class="section-kicker">Read the research</p>
+          <h2>ADEPT</h2>
+          <p>
+            Accelerating Dexterity via Pre-Training and Post-Training using
+            Reinforcement Learning
+          </p>
+          <div class="paper-actions">
+            <a class="button button-dark" href="#citation">Draft · link soon</a>
+            <a class="text-link" href="#citation">Jump to citation ↓</a>
+          </div>
+        </div>
+        <div id="citation" class="citation-card">
+          <div class="citation-top">
+            <span>BibTeX</span>
+            <button class="copy-button" type="button" data-copy-citation>Copy</button>
+          </div>
+          <pre><code data-citation>@article{adept2026,
+  title   = {ADEPT: Accelerating Dexterity via
+             Pre-Training and Post-Training using
+             Reinforcement Learning},
+  author  = {Lee, Jayjun and Yin, Jessica and Rana, Asif and
+             Blauch, Nicholas and Mady, Sam and Bhardwaj, Mohak and
+             Fazeli, Nima and Ratliff, Nathan and Van Wyk, Karl and
+             Handa, Ankur},
+  year    = {2026}
+}</code></pre>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a class="wordmark" href="#top"><span class="wordmark-mark"></span>ADEPT</a>
+      <p>Accelerating dexterity, one skill at a time.</p>
+      <p>© 2026 ADEPT Research</p>
+    </footer>
+  </body>
+</html>
