@@ -7,7 +7,7 @@
       name="description"
       content="ADEPT accelerates robot dexterity through reinforcement learning pre-training and post-training."
     />
-    <meta name="theme-color" content="#f0f0e8" />
+    <meta name="theme-color" content="#fffff8" />
     <meta property="og:title" content="ADEPT — Accelerating Dexterity" />
     <meta
       property="og:description"
@@ -16,11 +16,23 @@
     <meta property="og:type" content="website" />
     <title>ADEPT — Accelerating Dexterity</title>
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-    <script>document.documentElement.classList.add("js");</script>
+    <script>
+      (() => {
+        const root = document.documentElement;
+        root.classList.add("js");
+        let savedTheme = null;
+        try { savedTheme = localStorage.getItem("adept-theme"); } catch {}
+        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        const theme = savedTheme === "dark" || savedTheme === "light" ? savedTheme : systemTheme;
+        root.dataset.theme = theme;
+        root.style.colorScheme = theme;
+        document.querySelector('meta[name="theme-color"]').content = theme === "dark" ? "#11130f" : "#fffff8";
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -28,10 +40,6 @@
   </head>
   <body>
     <header class="site-header">
-      <a class="wordmark" href="#top" aria-label="ADEPT home">
-        <span class="wordmark-mark" aria-hidden="true"></span>
-        ADEPT
-      </a>
       <nav class="desktop-nav" aria-label="Primary navigation">
         <a href="#overview">Overview</a>
         <a href="#method">Method</a>
@@ -43,15 +51,16 @@
 
     <main id="top">
       <section class="hero">
-        <div class="hero-grid" aria-hidden="true"></div>
-        <div class="hero-orbit orbit-one" aria-hidden="true"></div>
-        <div class="hero-orbit orbit-two" aria-hidden="true"></div>
-        <p class="eyebrow reveal">Research preview · 2026</p>
-        <h1 class="reveal">
-          <span class="title-acronym">ADEPT:</span>
-          Accelerating Dexterity via Pre-Training and Post-Training using
-          Reinforcement Learning
-        </h1>
+        <div class="hero-title-lockup">
+          <h1 class="reveal">
+            <span class="title-line"><span class="title-acronym">ADEPT:</span> Accelerating Dexterity via Pre-Training</span><br class="title-break" />
+            <span class="title-line">and Post-Training using Reinforcement Learning</span>
+          </h1>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Switch to dark theme">
+            <span class="theme-toggle-track" aria-hidden="true"><span class="theme-toggle-thumb"></span></span>
+            <span class="theme-toggle-label" data-theme-label>Dark</span>
+          </button>
+        </div>
         <div class="hero-authors reveal">
           <p class="hero-authors-label">Authors</p>
           <p class="author-list">
@@ -82,26 +91,10 @@
         </div>
         <div class="hero-actions publication-links reveal" aria-label="Publication links">
           <!-- Replace the href values below when the public URLs are available. -->
-          <a class="publication-button primary" href="#paper">
-            <span class="publication-icon" aria-hidden="true">PDF</span>
-            <span><strong>Paper</strong><small>Draft preview</small></span>
-            <span class="publication-arrow" aria-hidden="true">↓</span>
-          </a>
-          <span class="publication-button is-pending" aria-disabled="true">
-            <span class="publication-icon" aria-hidden="true">A</span>
-            <span><strong>arXiv</strong><small>Coming soon</small></span>
-            <span class="publication-arrow" aria-hidden="true">↗</span>
-          </span>
-          <span class="publication-button is-pending" aria-disabled="true">
-            <span class="publication-icon" aria-hidden="true">X</span>
-            <span><strong>X thread</strong><small>Coming soon</small></span>
-            <span class="publication-arrow" aria-hidden="true">↗</span>
-          </span>
-          <span class="publication-button is-pending" aria-disabled="true">
-            <span class="publication-icon code-icon" aria-hidden="true">&lt;/&gt;</span>
-            <span><strong>Code</strong><small>Coming soon</small></span>
-            <span class="publication-arrow" aria-hidden="true">↗</span>
-          </span>
+          <a class="publication-button" href="#paper">Paper</a>
+          <span class="publication-button is-pending" aria-disabled="true" title="Coming soon">arXiv</span>
+          <span class="publication-button is-pending" aria-disabled="true" title="Coming soon">X thread</span>
+          <span class="publication-button is-pending" aria-disabled="true" title="Coming soon">Code</span>
         </div>
         <p class="hero-deck reveal">
           ADEPT turns reusable dexterous priors into precise, long-horizon skills
