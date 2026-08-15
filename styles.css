@@ -38,6 +38,13 @@
   --chart-grid: rgba(23, 32, 25, .13);
   --chart-adept: #607d32;
   --chart-base: #8b938c;
+  --code-surface: var(--paper);
+  --code-text: #20241f;
+  --code-keyword: #7100c7;
+  --code-function: #064fd3;
+  --code-string: #087d13;
+  --code-number: #b12424;
+  --code-comment: #737b73;
   --serif: "ET Book", Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif;
   --sans: "Manrope", Arial, sans-serif;
   --mono: "DM Mono", monospace;
@@ -66,6 +73,13 @@ html[data-theme="dark"] {
   --chart-grid: rgba(242, 241, 232, .15);
   --chart-adept: #c8f04b;
   --chart-base: #98a198;
+  --code-surface: var(--paper);
+  --code-text: #e9eadf;
+  --code-keyword: #d7a8ff;
+  --code-function: #8db5ff;
+  --code-string: #8fdb92;
+  --code-number: #ff9b91;
+  --code-comment: #90998f;
 }
 
 * { box-sizing: border-box; }
@@ -238,12 +252,12 @@ a.publication-button:hover { background: var(--ink); color: var(--paper-light); 
 
 .article-shell {
   display: grid;
-  gap: clamp(55px, 6vw, 100px);
-  grid-template-columns: 210px minmax(0, 920px);
+  gap: clamp(36px, 4vw, 64px);
+  grid-template-columns: 210px minmax(0, 1120px);
   margin: 0 auto;
-  max-width: 1500px;
+  max-width: 1600px;
   padding: 0;
-  width: calc(100% - 7vw);
+  width: calc(100% - 3vw);
 }
 .contents {
   --contents-progress: 0;
@@ -349,6 +363,71 @@ blockquote p { margin: 0; }
 .recipe-card-deploy { background: var(--blue); color: var(--accent-ink); }
 .recipe-connector { font: 300 2rem/1 var(--mono); height: 45px; padding: 8px 0 0 40px; }
 
+.algorithm { margin-top: 100px; }
+.algorithm-heading .section-kicker { margin-bottom: 15px; }
+.algorithm-heading h3 {
+  font: 400 clamp(2.15rem, 3.8vw, 3.6rem)/1 var(--serif);
+  letter-spacing: -.035em;
+  margin: 0;
+}
+.algorithm-heading > p:last-child {
+  color: var(--muted);
+  margin: 15px 0 30px;
+  max-width: 560px;
+}
+.algorithm-grid {
+  align-items: stretch;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.algorithm-card {
+  background: var(--code-surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--code-text);
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+.algorithm-card figcaption {
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  color: var(--code-comment);
+  display: flex;
+  gap: 13px;
+  padding: 16px 20px;
+}
+.algorithm-card figcaption .algorithm-index {
+  font: 400 .58rem/1 var(--mono);
+  letter-spacing: .1em;
+}
+.algorithm-card figcaption strong {
+  color: var(--code-text);
+  font: 400 1.2rem/1 var(--serif);
+}
+.algorithm-card pre {
+  color: var(--code-text);
+  flex: 1;
+  font: 400 clamp(.68rem, .8vw, .76rem)/1.68 var(--mono);
+  margin: 0;
+  overflow-x: auto;
+  padding: clamp(20px, 2.3vw, 26px) clamp(16px, 2vw, 22px);
+  scrollbar-color: var(--line) transparent;
+  tab-size: 4;
+  white-space: pre;
+}
+.algorithm-card pre:focus-visible { outline: 1px solid var(--ink); outline-offset: -5px; }
+.algorithm-card code { font: inherit; }
+.tok-keyword { color: var(--code-keyword); }
+.tok-function { color: var(--code-function); }
+.tok-string { color: var(--code-string); }
+.tok-number { color: var(--code-number); }
+.tok-comment { color: var(--code-comment); font-style: italic; }
+
 .capabilities { padding-bottom: 160px; scroll-margin-top: 90px; }
 .section-heading { align-items: end; border-top: 1px solid var(--line); display: grid; gap: 8vw; grid-template-columns: 1.2fr .8fr; padding: 25px 0 55px; }
 .section-heading h2 { margin: 0; }
@@ -415,6 +494,20 @@ footer p:last-child { color: var(--muted); justify-self: end; }
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity 650ms ease, transform 650ms ease; }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
+@media (max-width: 1100px) {
+  .article-shell { display: block; padding: 0 28px; width: 100%; }
+  .contents { display: none; }
+  .article { margin: auto; max-width: 1000px; }
+  .algorithm-grid {
+    grid-template-columns: repeat(2, minmax(440px, 1fr));
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scroll-snap-type: x proximity;
+    scrollbar-color: var(--line) transparent;
+  }
+  .algorithm-card { scroll-snap-align: start; }
+}
+
 @media (max-width: 900px) {
   .site-header { grid-template-columns: 1fr 1fr; }
   .desktop-nav { display: none; }
@@ -426,9 +519,6 @@ footer p:last-child { color: var(--muted); justify-self: end; }
   .hero h1 { font-size: clamp(2.4rem, 4.8vw, 3rem); }
   .title-line { white-space: normal; }
   .title-break { display: none; }
-  .article-shell { display: block; }
-  .contents { display: none; }
-  .article { margin: auto; max-width: 720px; }
   .recipe-card { grid-template-columns: 42px 1fr; }
   .recipe-tag { display: none; }
   .paper-section { grid-template-columns: 1fr; }
@@ -455,6 +545,10 @@ footer p:last-child { color: var(--muted); justify-self: end; }
   .film-copy p { margin-top: 25vh; }
   .article-shell { padding: 0 20px; }
   .article-section { margin-bottom: 110px; }
+  .algorithm { margin-top: 70px; }
+  .algorithm-grid { grid-template-columns: repeat(2, minmax(440px, 1fr)); }
+  .algorithm-card figcaption { padding: 13px 16px; }
+  .algorithm-card pre { font-size: .72rem; padding: 20px 16px; }
   .section-heading { display: block; }
   .section-heading > p { margin-top: 28px; }
   .media-grid { grid-template-columns: 1fr; }
