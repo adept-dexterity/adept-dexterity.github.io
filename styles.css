@@ -165,7 +165,7 @@ html[data-theme="dark"] .theme-toggle-thumb { transform: translateX(18px); }
 .title-acronym {
   color: var(--muted);
   font-size: 1em;
-  font-style: italic;
+  font-style: normal;
 }
 .hero h1 em, h2 em { color: var(--muted); font-weight: 400; }
 .hero-deck { border-top: 1px solid var(--line); font: 400 clamp(1.2rem, 2vw, 1.65rem)/1.45 var(--sans); margin: 58px auto 0; max-width: 820px; padding-top: 28px; position: relative; text-align: center; }
