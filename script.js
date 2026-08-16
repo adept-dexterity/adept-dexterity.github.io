@@ -1,4 +1,3 @@
-const header = document.querySelector(".site-header");
 const revealElements = document.querySelectorAll(".reveal");
 const sections = document.querySelectorAll("section[id]");
 const contents = document.querySelector(".contents");
@@ -41,12 +40,6 @@ const followSystemTheme = (event) => {
 
 if (systemTheme.addEventListener) systemTheme.addEventListener("change", followSystemTheme);
 else systemTheme.addListener(followSystemTheme);
-
-window.addEventListener(
-  "scroll",
-  () => header.classList.toggle("scrolled", window.scrollY > 20),
-  { passive: true },
-);
 
 const revealObserver = new IntersectionObserver(
   (entries) => {
