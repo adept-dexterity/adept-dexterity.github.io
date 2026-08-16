@@ -51,6 +51,7 @@
   --display: var(--serif);
   --contents-width: clamp(210px, 15vw, 238px);
   --page-gutter: clamp(28px, 3.2vw, 64px);
+  --content-max: clamp(1500px, 84vw, 1800px);
 }
 
 html[data-theme="dark"] {
@@ -510,7 +511,7 @@ footer p:last-child { color: var(--muted); justify-self: end; }
     display: grid;
     gap: 18px;
     grid-template-columns: minmax(0, 1fr) auto;
-    max-width: 1600px;
+    max-width: var(--content-max);
     width: 100%;
   }
   .hero-title-lockup .theme-toggle {
@@ -531,15 +532,21 @@ footer p:last-child { color: var(--muted); justify-self: end; }
       var(--contents-width) +
       max(
         var(--page-gutter),
-        calc((100vw - var(--contents-width) - 1500px) / 2)
+        calc((100vw - var(--contents-width) - var(--content-max)) / 2)
       )
     );
     margin-right: 0;
     width: min(
-      1500px,
+      var(--content-max),
       calc(100% - var(--contents-width) - var(--page-gutter) - var(--page-gutter))
     );
   }
+}
+
+@media (min-width: 1900px) {
+  .hero h1 { font-size: clamp(3.8rem, 3.5vw, 4.5rem); }
+  .hero-authors { max-width: 1200px; }
+  .author-list { font-size: clamp(1.2rem, 1.3vw, 1.55rem); }
 }
 
 @media (max-width: 1100px) {
