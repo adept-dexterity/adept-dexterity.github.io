@@ -1,5 +1,4 @@
 const revealElements = document.querySelectorAll(".reveal");
-const sections = document.querySelectorAll("section[id]");
 const contents = document.querySelector(".contents");
 const contentsLinks = document.querySelectorAll(".contents a");
 const themeToggle = document.querySelector("[data-theme-toggle]");
@@ -59,53 +58,49 @@ const revealObserver = new IntersectionObserver(
 
 revealElements.forEach((element) => revealObserver.observe(element));
 
-const sectionObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      contentsLinks.forEach((link) => {
-        const isActive = link.hash === `#${entry.target.id}`;
-        link.classList.toggle("active", isActive);
-        link.closest("li")?.classList.toggle("is-active", isActive);
-        if (isActive) link.setAttribute("aria-current", "location");
-        else link.removeAttribute("aria-current");
-      });
-    });
-  },
-  { rootMargin: "-20% 0px -65% 0px" },
-);
-
-sections.forEach((section) => sectionObserver.observe(section));
-
 const updateContentsProgress = () => {
-  if (!contents || contentsLinks.length < 2) return;
+  if (!contents || !contentsLinks.length) return;
 
   const marker = window.scrollY + window.innerHeight * 0.35;
   const milestones = [...contentsLinks]
-    .map((link) => document.querySelector(link.hash))
-    .filter(Boolean)
-    .map((section) => section.offsetTop);
+    .map((link) => ({ link, target: document.querySelector(link.hash) }))
+    .filter(({ target }) => Boolean(target));
+
+  if (!milestones.length) return;
+
+  const atPageEnd = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+  let activeIndex = 0;
+  milestones.forEach(({ target }, index) => {
+    if (marker >= target.offsetTop) activeIndex = index;
+  });
+  if (atPageEnd) activeIndex = milestones.length - 1;
 
   let progress = 0;
   for (let index = 0; index < milestones.length - 1; index += 1) {
-    const start = milestones[index];
-    const end = milestones[index + 1];
+    const start = milestones[index].target.offsetTop;
+    const end = milestones[index + 1].target.offsetTop;
     if (marker < start) break;
 
     const segmentProgress = Math.min(1, (marker - start) / (end - start));
     progress = (index + segmentProgress) / (milestones.length - 1);
   }
-  if (marker >= milestones.at(-1)) progress = 1;
+  if (atPageEnd || marker >= milestones.at(-1).target.offsetTop) progress = 1;
 
   contents.style.setProperty("--contents-progress", progress);
-  contentsLinks.forEach((link) => {
-    const target = document.querySelector(link.hash);
-    link.closest("li")?.classList.toggle("is-past", Boolean(target && marker >= target.offsetTop));
+  milestones.forEach(({ link }, index) => {
+    const isActive = index === activeIndex;
+    const listItem = link.closest("li");
+    link.classList.toggle("active", isActive);
+    listItem?.classList.toggle("is-active", isActive);
+    listItem?.classList.toggle("is-past", index < activeIndex);
+    if (isActive) link.setAttribute("aria-current", "location");
+    else link.removeAttribute("aria-current");
   });
 };
 
 window.addEventListener("scroll", updateContentsProgress, { passive: true });
 window.addEventListener("resize", updateContentsProgress);
+window.addEventListener("load", updateContentsProgress);
 updateContentsProgress();
 
 document.querySelectorAll("[data-video-placeholder]").forEach((placeholder) => {
