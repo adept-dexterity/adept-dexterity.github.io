@@ -36,7 +36,9 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css?v=responsive-2" />
+    <link rel="stylesheet" href="method-figure.css?v=1" />
     <script src="script.js" defer></script>
+    <script src="method-figure.js" defer></script>
   </head>
   <body>
     <main id="top">
@@ -147,42 +149,147 @@
               contact-rich manipulation from raw visual and tactile perception.
             </p>
 
-            <div class="recipe" aria-label="ADEPT training pipeline">
-              <div class="recipe-card recipe-card-dark">
-                <span class="recipe-number">01</span>
-                <div>
-                  <h3>Pre-train</h3>
-                  <p>Learn reaching, grasping, lifting, in-hand reorientation, and transport through generic object reposing.</p>
-                </div>
-                <span class="recipe-tag">Broad experience</span>
+            <div class="method-figure" data-method-figure aria-label="ADEPT training pipeline, interactive figure">
+              <div class="mf-stages">
+                <article class="mf-stage mf-stage-dark is-active" data-stage="0">
+                  <button class="mf-head" type="button" aria-expanded="true" aria-controls="mf-body-0">
+                    <span class="mf-num">01</span>
+                    <h3 class="mf-title">Pre-train</h3>
+                    <span class="mf-tag">Broad experience</span>
+                  </button>
+                  <div class="mf-body" id="mf-body-0">
+                    <div class="mf-media">
+                      <video muted loop playsinline preload="none" poster="assets/method/method-01-pretrain-poster.jpg" data-src="assets/method/method-01-pretrain.mp4" aria-label="Grid of simulated KUKA-Allegro robots reposing objects"></video>
+                      <span class="mf-media-caption">Reposing pre-training · simulation</span>
+                    </div>
+                    <div class="mf-detail">
+                      <p>
+                        One generic
+                        <span data-tip="Move a randomized primitive object from any pose to any goal pose — a single task that exercises every core dexterous skill.">object-reposing</span>
+                        task over randomized primitives teaches the reusable dexterous prior
+                        <span class="mf-m" data-tip="The pre-trained policy: one actor trained with PPO on generic object reposing, reused as the starting point for every downstream task.">&pi;<sub>pre</sub></span>.
+                      </p>
+                      <div class="mf-chips" aria-label="Skills learned during pre-training">
+                        <span class="mf-chip">Reach</span>
+                        <span class="mf-chip">Grasp</span>
+                        <span class="mf-chip">Lift</span>
+                        <span class="mf-chip">In-hand reorient</span>
+                        <span class="mf-chip">Transport</span>
+                      </div>
+                      <div class="mf-flow">
+                        <span class="mf-m" data-tip="Pre-training observations (proprioception, object and goal state) and the reposing reward.">o<sub>pre</sub>, r<sub>pre</sub></span>
+                        <span class="mf-flow-arrow">→</span>
+                        <span class="mf-pill"><span class="mf-m">&pi;<sub>pre</sub></span>
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-label="training, unfrozen"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0"></path></svg>
+                        </span>
+                        <span class="mf-flow-arrow">·</span>
+                        <span data-tip="Automatic domain randomization: physics and task difficulty expand as the policy improves, with gravity annealed from 0 to -9.81.">ADR curriculum</span>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="mf-stage mf-stage-lime" data-stage="1">
+                  <button class="mf-head" type="button" aria-expanded="false" aria-controls="mf-body-1">
+                    <span class="mf-num">02</span>
+                    <h3 class="mf-title">Post-train</h3>
+                    <span class="mf-tag">Focused practice</span>
+                  </button>
+                  <div class="mf-body" id="mf-body-1">
+                    <div class="mf-media">
+                      <video muted loop playsinline preload="none" poster="assets/method/method-02-posttrain-poster.jpg" data-src="assets/method/method-02-posttrain.mp4" aria-label="Grid of simulated robots practicing peg insertion on both embodiments"></video>
+                      <span class="mf-media-caption">FMB insertion · both embodiments</span>
+                    </div>
+                    <div class="mf-detail">
+                      <p>The prior adapts to precise, contact-rich insertion — in three steps designed to never erase it.</p>
+                      <div class="mf-substeps">
+                        <span class="mf-substep"><span class="mf-substep-index">A</span><span><span data-tip="A behavior-cloning stage transfers the prior into the expanded downstream observation space before any RL update.">BC distillation</span> — <span class="mf-m">&#8466;<sub>BC</sub>(&pi;<sub>pre</sub>, &pi;<sub>post</sub>)</span></span></span>
+                        <span class="mf-substep"><span class="mf-substep-index">B</span><span><span data-tip="A fresh critic is calibrated on the downstream reward while the actor stays frozen, so early PPO updates cannot destroy the prior.">Critic warm-up</span> — <span class="mf-m">V<sub>post</sub></span> learns, <span class="mf-m">&pi;<sub>post</sub></span> frozen</span></span>
+                        <span class="mf-substep"><span class="mf-substep-index">C</span><span><span data-tip="PPO with linearly decaying clip range (0.20 to 0.05) and actor learning rate (1e-3 to 1e-5): new behavior without forgetting.">Conservative PPO</span> — <span class="mf-m">&epsilon;<sub>clip</sub>&darr;, lr&darr;</span></span></span>
+                      </div>
+                      <div class="mf-flow">
+                        <span class="mf-pill"><span class="mf-m">&pi;<sub>pre</sub></span>
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-label="frozen"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+                        </span>
+                        <span class="mf-flow-arrow">→</span>
+                        <span class="mf-pill"><span class="mf-m" data-tip="The task specialist: initialized from the prior, adapted to the downstream task.">&pi;<sub>post</sub>, V<sub>post</sub></span>
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-label="training, unfrozen"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0"></path></svg>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="mf-stage mf-stage-light" data-stage="2">
+                  <button class="mf-head" type="button" aria-expanded="false" aria-controls="mf-body-2">
+                    <span class="mf-num">03</span>
+                    <h3 class="mf-title">Distill</h3>
+                    <span class="mf-tag">Raw perception</span>
+                  </button>
+                  <div class="mf-body" id="mf-body-2">
+                    <div class="mf-media">
+                      <img class="mf-kenburns" src="assets/method/method-03-distill.jpg" alt="Photorealistic domain-randomized simulation scene with many robot workcells under varied lighting" loading="lazy" decoding="async" />
+                      <span class="mf-media-caption">Domain-randomized stereo RGB</span>
+                    </div>
+                    <div class="mf-detail">
+                      <p>
+                        The specialist becomes a teacher: a
+                        <span data-tip="The student observes stereo RGB (or visuo-tactile) inputs rendered with heavy domain randomization — what the real cameras will see.">stereo-RGB</span>
+                        student learns to act from pixels through a two-stage curriculum.
+                      </p>
+                      <div class="mf-flow">
+                        <span class="mf-pill"><span class="mf-m">&pi;<sub>post</sub></span>
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-label="frozen"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+                        </span>
+                        <span class="mf-flow-arrow">→</span>
+                        <span class="mf-m"><span data-tip="Behavior cloning from the state-based teacher, plus auxiliary losses that align the student's internal representations.">&#8466;<sub>BC</sub> + &#8466;<sub>aux</sub></span></span>
+                        <span class="mf-flow-arrow">→</span>
+                        <span class="mf-pill"><span class="mf-m" data-tip="The perceptive student policy: acts from images alone, with no privileged state information.">&pi;<sub>student</sub></span>
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-label="training, unfrozen"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0"></path></svg>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="mf-stage mf-stage-blue" data-stage="3">
+                  <button class="mf-head" type="button" aria-expanded="false" aria-controls="mf-body-3">
+                    <span class="mf-num">04</span>
+                    <h3 class="mf-title">Real world</h3>
+                    <span class="mf-tag">Sim to real</span>
+                  </button>
+                  <div class="mf-body" id="mf-body-3">
+                    <div class="mf-media">
+                      <video muted loop playsinline preload="none" poster="assets/method/method-04-poster.jpg" data-src="assets/method/method-04-real.mp4" aria-label="Real KUKA-Allegro robot performing vision-based peg insertion"></video>
+                      <span class="mf-media-caption">Zero-shot · KUKA–Allegro</span>
+                    </div>
+                    <div class="mf-detail">
+                      <p>
+                        The student runs
+                        <span data-tip="Deployed on hardware with no real-world fine-tuning, no fixtures, and no object-pose estimation.">zero-shot</span>
+                        on real hardware — one continuous policy from raw perception to action.
+                      </p>
+                      <div class="mf-flow">
+                        <span class="mf-m" data-tip="Stereo RGB from the robot's cameras.">o<sub>img</sub></span>
+                        <span class="mf-flow-arrow">→</span>
+                        <span class="mf-pill"><span class="mf-m">&pi;<sub>student</sub></span>
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-label="frozen"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+                        </span>
+                        <span class="mf-flow-arrow">→</span>
+                        <span data-tip="Full configuration-space commands for arm plus hand: 23 DoF on KUKA-Allegro, 29 DoF on Flexiv-Sharpa."><span class="mf-m">23-D</span> cspace actions</span>
+                      </div>
+                    </div>
+                  </div>
+                </article>
               </div>
-              <div class="recipe-connector" aria-hidden="true">→</div>
-              <div class="recipe-card recipe-card-accent">
-                <span class="recipe-number">02</span>
-                <div>
-                  <h3>Post-train</h3>
-                  <p>Preserve the prior with actor distillation, critic warm-up, and conservative PPO updates.</p>
-                </div>
-                <span class="recipe-tag">Focused practice</span>
+              <div class="mf-progress" role="tablist" aria-label="Pipeline stages">
+                <button type="button" class="is-active" aria-label="Stage 1: Pre-train"><span></span></button>
+                <button type="button" aria-label="Stage 2: Post-train"><span></span></button>
+                <button type="button" aria-label="Stage 3: Distill"><span></span></button>
+                <button type="button" aria-label="Stage 4: Real world"><span></span></button>
               </div>
-              <div class="recipe-connector" aria-hidden="true">→</div>
-              <div class="recipe-card recipe-card-light">
-                <span class="recipe-number">03</span>
-                <div>
-                  <h3>Distill</h3>
-                  <p>Transfer state-based teachers into stereo RGB or visuo-tactile students through a two-stage curriculum.</p>
-                </div>
-                <span class="recipe-tag">Raw perception</span>
-              </div>
-              <div class="recipe-connector" aria-hidden="true">→</div>
-              <div class="recipe-card recipe-card-deploy">
-                <span class="recipe-number">04</span>
-                <div>
-                  <h3>Deploy</h3>
-                  <p>Run the perceptive policy zero-shot on real 23-DoF and 29-DoF arm–hand systems.</p>
-                </div>
-                <span class="recipe-tag">Sim to real</span>
-              </div>
+              <p class="mf-hint">Click a stage to explore · hover the dotted terms</p>
+              <div class="mf-tooltip" role="tooltip" hidden></div>
             </div>
 
             <div class="algorithm">
