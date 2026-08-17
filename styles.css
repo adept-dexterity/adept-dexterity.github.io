@@ -246,7 +246,7 @@ a.publication-button:hover { background: var(--ink); color: var(--paper-light); 
 }
 .contents > p {
   color: var(--muted);
-  font: 400 .78rem/1 var(--mono);
+  font: 400 .88rem/1 var(--mono);
   letter-spacing: .13em;
   margin: 0 0 24px;
   padding-left: 24px;
@@ -312,7 +312,7 @@ a.publication-button:hover { background: var(--ink); color: var(--paper-light); 
 .contents a {
   color: var(--muted);
   display: inline-block;
-  font-size: 1.08rem;
+  font-size: 1.22rem;
   line-height: 1.35;
   transition: color 160ms ease, transform 160ms ease;
 }
