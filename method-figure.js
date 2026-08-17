@@ -1,29 +1,27 @@
-/* ADEPT interactive method figure */
+/* ADEPT interactive method figure — browser-tab layout */
 (() => {
   const figure = document.querySelector("[data-method-figure]");
   if (!figure) return;
 
-  const stages = [...figure.querySelectorAll(".mf-stage")];
-  const heads = [...figure.querySelectorAll(".mf-head")];
-  const dots = [...figure.querySelectorAll(".mf-progress button")];
+  const tabs = [...figure.querySelectorAll(".mf-tab")];
+  const panels = [...figure.querySelectorAll(".mf-panel")];
   const tooltip = figure.querySelector(".mf-tooltip");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let figureInView = false;
 
-  const loadVideo = (stage) => {
-    const video = stage.querySelector("video[data-src]");
-    if (!video) return stage.querySelector("video");
+  const loadVideo = (panel) => {
+    const video = panel.querySelector("video[data-src]");
+    if (!video) return;
     video.src = video.dataset.src;
     video.removeAttribute("data-src");
-    return video;
   };
 
   const playActive = () => {
-    stages.forEach((stage) => {
-      const active = stage.classList.contains("is-active");
-      const video = stage.querySelector("video");
+    panels.forEach((panel) => {
+      const video = panel.querySelector("video");
       if (!video) return;
-      if (active && figureInView) {
-        if (video.dataset.src) loadVideo(stage);
+      if (!panel.hidden && figureInView) {
+        loadVideo(panel);
         if (reducedMotion) { video.controls = true; return; }
         video.play().catch(() => {});
       } else {
@@ -32,41 +30,42 @@
     });
   };
 
-  const activate = (index) => {
-    stages.forEach((stage, i) => {
+  const activate = (index, focusTab = false) => {
+    tabs.forEach((tab, i) => {
       const active = i === index;
-      stage.classList.toggle("is-active", active);
-      stage.querySelector(".mf-head").setAttribute("aria-expanded", String(active));
+      tab.classList.toggle("is-active", active);
+      tab.setAttribute("aria-selected", String(active));
+      tab.setAttribute("tabindex", active ? "0" : "-1");
     });
-    dots.forEach((dot, i) => dot.classList.toggle("is-active", i === index));
+    panels.forEach((panel, i) => {
+      const active = i === index;
+      if (active && panel.hidden && !reducedMotion) {
+        panel.classList.remove("is-entering");
+        void panel.offsetWidth;
+        panel.classList.add("is-entering");
+      }
+      panel.hidden = !active;
+    });
+    if (focusTab) tabs[index].focus();
     hideTip();
     playActive();
   };
 
-  stages.forEach((stage, i) => {
-    stage.addEventListener("click", (event) => {
-      if (stage.classList.contains("is-active")) return;
-      if (event.target.closest("[data-tip]")) return;
-      activate(i);
-    });
-  });
-  heads.forEach((head, i) => head.addEventListener("click", () => activate(i)));
-  dots.forEach((dot, i) => dot.addEventListener("click", () => activate(i)));
+  tabs.forEach((tab, i) => tab.addEventListener("click", () => activate(i)));
 
-  figure.addEventListener("keydown", (event) => {
-    if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
-    const current = stages.findIndex((s) => s.classList.contains("is-active"));
-    const next = event.key === "ArrowRight"
-      ? Math.min(stages.length - 1, current + 1)
-      : Math.max(0, current - 1);
-    if (next !== current) {
-      activate(next);
-      heads[next].focus();
-    }
+  figure.querySelector(".mf-tabs").addEventListener("keydown", (event) => {
+    const current = tabs.findIndex((t) => t.classList.contains("is-active"));
+    let next = null;
+    if (event.key === "ArrowRight") next = (current + 1) % tabs.length;
+    else if (event.key === "ArrowLeft") next = (current - 1 + tabs.length) % tabs.length;
+    else if (event.key === "Home") next = 0;
+    else if (event.key === "End") next = tabs.length - 1;
+    if (next === null) return;
+    event.preventDefault();
+    activate(next, true);
   });
 
   /* Pause media when the figure leaves the viewport */
-  let figureInView = false;
   const viewObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
