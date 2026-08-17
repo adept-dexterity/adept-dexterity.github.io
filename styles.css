@@ -240,7 +240,7 @@ a.publication-button:hover { background: var(--ink); color: var(--paper-light); 
   padding: 0 24px 10px 8px;
   position: fixed;
   text-align: left;
-  top: 42px;
+  top: calc(clamp(48px, 6vh, 64px) + 6px);
   width: var(--contents-width);
   z-index: 60;
 }
@@ -255,7 +255,7 @@ a.publication-button:hover { background: var(--ink); color: var(--paper-light); 
 .contents ol {
   display: flex;
   flex-direction: column;
-  height: clamp(330px, 52vh, 540px);
+  height: clamp(280px, 42vh, 440px);
   justify-content: space-between;
   list-style: none;
   margin: 0;
