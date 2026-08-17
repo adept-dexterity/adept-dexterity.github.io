@@ -513,6 +513,7 @@ footer p:last-child { color: var(--muted); justify-self: end; }
 }
 
 @media (min-width: 1900px) {
+  :root { --content-max: 1500px; }
   .article-shell {
     display: block;
     margin-left: calc(
