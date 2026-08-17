@@ -513,6 +513,24 @@ footer p:last-child { color: var(--muted); justify-self: end; }
 }
 
 @media (min-width: 1900px) {
+  .article-shell {
+    display: block;
+    margin-left: calc(
+      var(--contents-width) +
+      max(
+        var(--page-gutter),
+        calc((100vw - var(--contents-width) - var(--content-max)) / 2)
+      )
+    );
+    margin-right: 0;
+    max-width: 1500px;
+    width: min(
+      1500px,
+      calc(100% - var(--contents-width) - var(--page-gutter) - var(--page-gutter))
+    );
+  }
+  .article { width: 100%; }
+  .feature-film { max-width: var(--content-max); }
   .hero h1 { font-size: clamp(3.8rem, 3.5vw, 4.5rem); }
   .hero-authors { max-width: 1200px; }
   .author-list { font-size: clamp(1.2rem, 1.3vw, 1.55rem); }
