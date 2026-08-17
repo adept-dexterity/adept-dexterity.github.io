@@ -8,7 +8,7 @@
   display: flex;
   gap: 6px;
   overflow-x: auto;
-  padding: 0 18px;
+  padding: 0;
   position: relative;
   scrollbar-width: none;
   z-index: 2;
@@ -60,9 +60,10 @@
   background: radial-gradient(circle at 12px 0, transparent 12px, var(--c) 12.5px);
   right: -12px;
 }
+.mf-tab:first-child.is-active::before { display: none; }
 
 .mf-panel {
-  border-radius: 12px;
+  border-radius: 0 12px 12px 12px;
   display: grid;
   gap: 24px;
   grid-template-columns: 1.35fr 1fr;
