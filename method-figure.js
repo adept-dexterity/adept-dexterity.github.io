@@ -124,3 +124,23 @@
 
   activate(0);
 })();
+
+/* Lazy autoplay loops for populated media cards */
+(() => {
+  const lazies = [...document.querySelectorAll("video[data-lazy-video]")];
+  if (!lazies.length) return;
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const video = entry.target;
+      if (entry.isIntersecting) {
+        if (video.dataset.src) { video.src = video.dataset.src; video.removeAttribute("data-src"); }
+        if (reduced) { video.controls = true; return; }
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  }, { threshold: 0.2 });
+  lazies.forEach((video) => io.observe(video));
+})();

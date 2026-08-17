@@ -205,3 +205,26 @@
   .mf-media img.mf-kenburns { animation: none; }
   .mf-tooltip { transition: none; }
 }
+
+/* Hero overview film */
+.film-frame {
+  aspect-ratio: 16 / 9;
+  background: #000;
+  overflow: hidden;
+  position: relative;
+}
+.film-frame video { display: block; height: 100%; object-fit: cover; width: 100%; }
+
+/* Populated capability cards */
+.media-card .media-placeholder.has-video { aspect-ratio: 16 / 9; }
+.media-card-wide .media-placeholder.has-video { aspect-ratio: 16 / 7; }
+.media-placeholder.has-video .media-index {
+  background: rgba(10, 14, 11, .62);
+  border-radius: 4px;
+  color: #f2f1e8;
+  padding: 6px 8px;
+}
+@media (max-width: 620px) {
+  .media-card .media-placeholder.has-video { aspect-ratio: 16 / 9; }
+  .media-card-wide .media-placeholder.has-video { aspect-ratio: 16 / 7; }
+}
