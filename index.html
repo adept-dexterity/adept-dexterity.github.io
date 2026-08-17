@@ -35,9 +35,9 @@
       href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=responsive-2" />
+    <link rel="stylesheet" href="styles.css?v=dark-diagrams-1" />
     <link rel="stylesheet" href="method-figure.css?v=1" />
-    <script src="script.js" defer></script>
+    <script src="script.js?v=dark-diagrams-1" defer></script>
     <script src="method-figure.js" defer></script>
   </head>
   <body>
@@ -116,7 +116,6 @@
             <li><a href="#overview">A faster path to dexterity</a></li>
             <li><a href="#method">The ADEPT recipe</a></li>
             <li><a href="#capabilities">Capabilities</a></li>
-            <li><a href="#results">Results</a></li>
             <li><a href="#paper">Paper &amp; citation</a></li>
           </ol>
         </aside>
@@ -379,6 +378,8 @@
                 <figure class="post-training-frame" role="listitem">
                   <img
                     src="assets/diagrams/adept-01-reaching.png"
+                    data-light-src="assets/diagrams/adept-01-reaching.png"
+                    data-dark-src="assets/diagrams/adept-01-reaching-dark.png"
                     alt="Robot hand reaching toward a two-pronged peg beside the pegboard"
                     loading="lazy"
                     decoding="async"
@@ -387,6 +388,8 @@
                 <figure class="post-training-frame" role="listitem">
                   <img
                     src="assets/diagrams/adept-03-transport-v3.png"
+                    data-light-src="assets/diagrams/adept-03-transport-v3.png"
+                    data-dark-src="assets/diagrams/adept-03-transport-v3-dark.png"
                     alt="Robot hand transporting the two-pronged peg above the pegboard"
                     loading="lazy"
                     decoding="async"
@@ -395,6 +398,8 @@
                 <figure class="post-training-frame" role="listitem">
                   <img
                     src="assets/diagrams/adept-04-insertion-v2.png"
+                    data-light-src="assets/diagrams/adept-04-insertion-v2.png"
+                    data-dark-src="assets/diagrams/adept-04-insertion-v2-dark.png"
                     alt="Robot hand inserting the two-pronged peg into the pegboard"
                     loading="lazy"
                     decoding="async"
@@ -446,65 +451,6 @@
             </div>
             <figcaption><strong>Emergent recovery</strong><span>Drop · regrasp · continue</span></figcaption>
           </figure>
-        </div>
-      </section>
-
-      <section id="results" class="results-section">
-        <div class="content-wide">
-          <div class="section-heading reveal">
-            <div>
-              <p class="section-kicker">Results</p>
-              <h2>Learning that compounds</h2>
-            </div>
-            <p>
-              ADEPT amortizes its dexterous foundation across downstream tasks and
-              unlocks fast, continuous manipulation on two distinct embodiments.
-            </p>
-          </div>
-
-          <div class="metrics reveal">
-            <div class="metric">
-              <span class="metric-value">2–14<span>×</span></span>
-              <p>faster execution</p>
-              <small>vs. the staged FMB pipeline</small>
-            </div>
-            <div class="metric">
-              <span class="metric-value">5–10<span>s</span></span>
-              <p>end-to-end behavior</p>
-              <small>one continuous learned policy</small>
-            </div>
-            <div class="metric">
-              <span class="metric-value">23<span>/</span>29</span>
-              <p>degrees of freedom</p>
-              <small>KUKA–Allegro · Flexiv–Sharpa</small>
-            </div>
-          </div>
-
-          <div class="chart-card reveal">
-            <div class="chart-header">
-              <div>
-                <p>Training efficiency</p>
-              <span>Downstream task progress over environment steps</span>
-              </div>
-              <div class="chart-legend"><span class="legend-adept">ADEPT</span><span class="legend-base">From scratch</span></div>
-            </div>
-            <svg class="chart" viewBox="0 0 900 380" role="img" aria-label="Placeholder chart comparing ADEPT with training from scratch">
-              <g class="grid-lines">
-                <line x1="70" y1="40" x2="70" y2="320" />
-                <line x1="70" y1="320" x2="860" y2="320" />
-                <line x1="70" y1="250" x2="860" y2="250" />
-                <line x1="70" y1="180" x2="860" y2="180" />
-                <line x1="70" y1="110" x2="860" y2="110" />
-                <line x1="70" y1="40" x2="860" y2="40" />
-              </g>
-              <path class="chart-area" d="M70 307 C150 280 200 200 290 150 S450 72 560 58 S760 48 860 45 L860 320 L70 320 Z" />
-              <path class="chart-line adept-line" d="M70 307 C150 280 200 200 290 150 S450 72 560 58 S760 48 860 45" />
-              <path class="chart-line base-line" d="M70 310 C180 305 260 288 350 250 S530 185 650 150 S780 126 860 112" />
-              <text x="70" y="355">0</text><text x="820" y="355">STEPS</text>
-              <text x="12" y="45">100%</text><text x="30" y="325">0%</text>
-            </svg>
-            <p class="caption">Illustrative web placeholder — replace with the final ADEPT training-progress figure.</p>
-          </div>
         </div>
       </section>
 

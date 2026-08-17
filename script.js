@@ -19,6 +19,10 @@ const setTheme = (theme, persist = false) => {
   const isDark = theme === "dark";
   document.documentElement.dataset.theme = isDark ? "dark" : "light";
   document.documentElement.style.colorScheme = isDark ? "dark" : "light";
+  document.querySelectorAll("img[data-light-src][data-dark-src]").forEach((image) => {
+    const source = isDark ? image.dataset.darkSrc : image.dataset.lightSrc;
+    if (source && image.getAttribute("src") !== source) image.setAttribute("src", source);
+  });
   themeToggle?.setAttribute("aria-pressed", String(isDark));
   themeToggle?.setAttribute("aria-label", `Switch to ${isDark ? "light" : "dark"} theme`);
   if (themeLabel) themeLabel.textContent = isDark ? "Light" : "Dark";
