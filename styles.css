@@ -237,18 +237,19 @@ a.publication-button:hover { background: var(--ink); color: var(--paper-light); 
   --contents-progress: 0;
   background: linear-gradient(90deg, var(--paper) 0%, rgba(var(--paper-rgb), .96) 78%, rgba(var(--paper-rgb), 0) 100%);
   left: 0;
-  padding: 0 28px 10px clamp(8px, 1vw, 16px);
+  padding: 0 24px 10px 8px;
   position: fixed;
-  top: 62px;
+  text-align: left;
+  top: 42px;
   width: var(--contents-width);
   z-index: 60;
 }
 .contents > p {
   color: var(--muted);
-  font: 400 .7rem/1 var(--mono);
+  font: 400 .78rem/1 var(--mono);
   letter-spacing: .13em;
   margin: 0 0 24px;
-  padding-left: 22px;
+  padding-left: 24px;
   text-transform: uppercase;
 }
 .contents ol {
@@ -285,7 +286,7 @@ a.publication-button:hover { background: var(--ink); color: var(--paper-light); 
   display: flex;
   margin: 0;
   min-height: 14px;
-  padding-left: 22px;
+  padding-left: 24px;
   position: relative;
 }
 .contents li::before {
@@ -311,7 +312,7 @@ a.publication-button:hover { background: var(--ink); color: var(--paper-light); 
 .contents a {
   color: var(--muted);
   display: inline-block;
-  font-size: .98rem;
+  font-size: 1.08rem;
   line-height: 1.35;
   transition: color 160ms ease, transform 160ms ease;
 }
