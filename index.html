@@ -36,9 +36,9 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css?v=wide-layout-5" />
-    <link rel="stylesheet" href="method-figure.css?v=4" />
+    <link rel="stylesheet" href="method-figure.css?v=6" />
     <script src="script.js?v=contents-1" defer></script>
-    <script src="method-figure.js" defer></script>
+    <script src="method-figure.js?v=2" defer></script>
   </head>
   <body>
     <main id="top">
@@ -110,6 +110,7 @@
             <li><a href="#overview">A faster path to dexterity</a></li>
             <li><a href="#method">The ADEPT recipe</a></li>
             <li><a href="#capabilities">Capabilities</a></li>
+            <li><a href="#gallery">Rollout gallery</a></li>
             <li><a href="#results">Results</a></li>
             <li><a href="#paper">Paper &amp; citation</a></li>
           </ol>
@@ -165,8 +166,8 @@
 
               <section class="mf-panel" id="mf-panel-0" data-tone="dark" role="tabpanel" aria-labelledby="mf-tab-0">
                 <div class="mf-media">
-                  <video muted loop playsinline preload="none" poster="assets/method/method-01-pretrain-poster.jpg" data-src="assets/method/method-01-pretrain.mp4" aria-label="Grid of simulated KUKA-Allegro robots reposing objects"></video>
-                  <span class="mf-media-caption">Reposing pre-training · simulation</span>
+                  <video muted loop playsinline preload="none" poster="assets/method/method-01-pretrain-poster.jpg" data-src="assets/method/method-01-pretrain.mp4" aria-label="Zoom out from a single simulated robot to a wall of 32 parallel reposing environments across both embodiments"></video>
+                  <span class="mf-media-caption">Reposing pre-training · 32 environments · both embodiments</span>
                 </div>
                 <div class="mf-detail">
                   <span class="mf-tag">Broad experience</span>
@@ -198,7 +199,7 @@
               <section class="mf-panel" id="mf-panel-1" data-tone="lime" role="tabpanel" aria-labelledby="mf-tab-1" hidden>
                 <div class="mf-media">
                   <video muted loop playsinline preload="none" poster="assets/method/method-02-posttrain-poster.jpg" data-src="assets/method/method-02-posttrain.mp4" aria-label="Grid of simulated robots practicing peg insertion on both embodiments"></video>
-                  <span class="mf-media-caption">FMB insertion · both embodiments</span>
+                  <span class="mf-media-caption">Post-trained teachers · both embodiments</span>
                 </div>
                 <div class="mf-detail">
                   <span class="mf-tag">Focused practice</span>
@@ -222,7 +223,7 @@
 
               <section class="mf-panel" id="mf-panel-2" data-tone="light" role="tabpanel" aria-labelledby="mf-tab-2" hidden>
                 <div class="mf-media">
-                  <img class="mf-kenburns" src="assets/method/method-03-distill.jpg" alt="Photorealistic domain-randomized simulation scene with many robot workcells under varied lighting" loading="lazy" decoding="async" />
+                  <video muted loop playsinline preload="none" poster="assets/method/method-03-distill-poster.jpg" data-src="assets/method/method-03-distill.mp4" aria-label="Distilled vision student inserting a peg in a domain-randomized scene"></video>
                   <span class="mf-media-caption">Domain-randomized stereo RGB</span>
                 </div>
                 <div class="mf-detail">
@@ -422,13 +423,214 @@
             <figcaption><strong>Dish-rack placement</strong><span>Flip · regrasp · transport</span></figcaption>
           </figure>
           <figure class="media-card reveal">
-            <div class="media-placeholder tone-coral" data-video-placeholder>
+            <div class="media-placeholder tone-coral has-video">
+              <video muted loop playsinline preload="none" poster="assets/capabilities/recovery-poster.jpg" data-lazy-video data-src="assets/capabilities/recovery.mp4" aria-label="KUKA-Allegro re-grasping and re-inserting a peg after a human pulls it out"></video>
               <span class="media-index">03</span>
-              <div class="object-shape shape-cylinder" aria-hidden="true"></div>
-              <button class="play-button small" type="button" aria-label="Video coming soon"><span>▶</span></button>
-              <span class="media-status">Add video</span>
             </div>
-            <figcaption><strong>Emergent recovery</strong><span>Drop · regrasp · continue</span></figcaption>
+            <figcaption><strong>Emergent recovery</strong><span>Perturb · regrasp · continue</span></figcaption>
+          </figure>
+          <figure class="media-card media-card-wide tactile-feature reveal">
+            <div class="tactile-layout">
+              <div class="tactile-copy">
+                <p class="section-kicker">Visuo-tactile</p>
+                <h3>Touch closes the loop.</h3>
+                <p>The 29-DoF Flexiv–Sharpa student fuses stereo RGB with per-finger Sharpa TacMap deformation and contact signals. The lower panels stream the tactile observations the policy acts on — they light up on contact.</p>
+              </div>
+              <div class="tactile-media">
+                <video muted loop playsinline preload="none" poster="assets/capabilities/tactile-combined-poster.jpg" data-lazy-video data-src="assets/capabilities/tactile-combined.mp4" aria-label="Visuo-tactile student: RGB viewport above per-finger tactile force panels"></video>
+              </div>
+            </div>
+            <figcaption><strong>Visuo-tactile student</strong><span>Stereo RGB · per-finger TacMap</span></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="gallery" class="gallery-section content-wide">
+        <div class="section-heading reveal">
+          <div>
+            <p class="section-kicker">Rollout gallery</p>
+            <h2>Individual rollouts,<br />task by task</h2>
+          </div>
+          <p>
+            The uncut single rollouts behind every montage — sim teachers,
+            distilled students, and real-world deployments. Pick a stage,
+            then a task.
+          </p>
+        </div>
+        <div class="gallery-stages" aria-label="Pipeline stages">
+          <button class="gallery-stage is-active" data-stage="pretrain" type="button"><span class="gallery-stage-num">01</span>Pre-Training</button>
+          <button class="gallery-stage" data-stage="zeroshot" type="button"><span class="gallery-stage-num">02</span>Zero-Shot</button>
+          <button class="gallery-stage" data-stage="posttrain" type="button"><span class="gallery-stage-num">03</span>Post-Training</button>
+          <button class="gallery-stage" data-stage="distill" type="button"><span class="gallery-stage-num">04</span>Distillation</button>
+          <button class="gallery-stage" data-stage="real" type="button"><span class="gallery-stage-num">05</span>Real</button>
+        </div>
+        <div class="gallery-tags" aria-label="Tasks">
+          <button class="gallery-chip is-active" data-stage="pretrain" data-cat="reposing" type="button">Object reposing</button>
+          <button class="gallery-chip" data-stage="zeroshot" data-cat="zeroshot" type="button" hidden>FMB insertion</button>
+          <button class="gallery-chip" data-stage="posttrain" data-cat="ptfmb" type="button" hidden>FMB insertion</button>
+          <button class="gallery-chip" data-stage="posttrain" data-cat="ptdish" type="button" hidden>Dish placement</button>
+          <button class="gallery-chip" data-stage="distill" data-cat="visfmb" type="button" hidden>Vision · FMB</button>
+          <button class="gallery-chip" data-stage="distill" data-cat="visdish" type="button" hidden>Vision · dish</button>
+          <button class="gallery-chip" data-stage="distill" data-cat="tactile" type="button" hidden>Visuo-tactile · FMB</button>
+          <button class="gallery-chip" data-stage="real" data-cat="realfmb" type="button" hidden>FMB insertion</button>
+          <button class="gallery-chip" data-stage="real" data-cat="realdish" type="button" hidden>Dish placement</button>
+        </div>
+        <div class="gallery-grid">
+          <figure class="gallery-card" data-stage="pretrain" data-cat="reposing">
+            <div class="gallery-media">
+              <video muted loop playsinline preload="none" poster="assets/gallery/reposing__kuka_cuboid_large-poster.jpg" data-src="assets/gallery/reposing__kuka_cuboid_large.mp4" aria-label="KUKA–Allegro — Cuboid 5×10×10 cm"></video>
+            </div>
+            <figcaption><strong>KUKA–Allegro</strong><span>Cuboid 5×10×10 cm</span></figcaption>
+          </figure>
+          <figure class="gallery-card" data-stage="pretrain" data-cat="reposing">
+            <div class="gallery-media">
+              <video muted loop playsinline preload="none" poster="assets/gallery/reposing__kuka_sphere_small-poster.jpg" data-src="assets/gallery/reposing__kuka_sphere_small.mp4" aria-label="KUKA–Allegro — Sphere r 2.5 cm"></video>
+            </div>
+            <figcaption><strong>KUKA–Allegro</strong><span>Sphere r 2.5 cm</span></figcaption>
+          </figure>
+          <figure class="gallery-card" data-stage="pretrain" data-cat="reposing">
+            <div class="gallery-media">
+              <video muted loop playsinline preload="none" poster="assets/gallery/reposing__rizon_sphere_large-poster.jpg" data-src="assets/gallery/reposing__rizon_sphere_large.mp4" aria-label="Flexiv–Sharpa — Sphere r 5 cm"></video>
+            </div>
+            <figcaption><strong>Flexiv–Sharpa</strong><span>Sphere r 5 cm</span></figcaption>
+          </figure>
+          <figure class="gallery-card" data-stage="pretrain" data-cat="reposing">
+            <div class="gallery-media">
+              <video muted loop playsinline preload="none" poster="assets/gallery/reposing__rizon_rod_thin-poster.jpg" data-src="assets/gallery/reposing__rizon_rod_thin.mp4" aria-label="Flexiv–Sharpa — Thin rod r 1 × 20 cm"></video>
+            </div>
+            <figcaption><strong>Flexiv–Sharpa</strong><span>Thin rod r 1 × 20 cm</span></figcaption>
+          </figure>
+          <figure class="gallery-card" data-stage="zeroshot" data-cat="zeroshot" hidden>
+            <div class="gallery-media">
+              <video muted loop playsinline preload="none" poster="assets/gallery/zeroshot__kuka_seed123-poster.jpg" data-src="assets/gallery/zeroshot__kuka_seed123.mp4" aria-label="KUKA–Allegro — Reposing teacher · zero-shot"></video>
+            </div>
+            <figcaption><strong>KUKA–Allegro</strong><span>Reposing teacher · zero-shot</span></figcaption>
+          </figure>
+          <figure class="gallery-card" data-stage="zeroshot" data-cat="zeroshot" hidden>
+            <div class="gallery-media">
+              <video muted loop playsinline preload="none" poster="assets/gallery/zeroshot__rizon_seed999-poster.jpg" data-src="assets/gallery/zeroshot__rizon_seed999.mp4" aria-label="Flexiv–Sharpa — Reposing teacher · zero-shot"></video>
+            </div>
+            <figcaption><strong>Flexiv–Sharpa</strong><span>Reposing teacher · zero-shot</span></figcaption>
+          </figure>
+          <figure class="gallery-card" data-stage="posttrain" data-cat="ptfmb" hidden>
+            <div class="gallery-media">
+              <video muted loop playsinline preload="none" poster="assets/gallery/ptfmb__kuka_seed1001-poster.jpg" data-src="assets/gallery/ptfmb__kuka_seed1001.mp4" aria-label="KUKA–Allegro — Seed 1001"></video>
+            </div>
+            <figcaption><strong>KUKA–Allegro</strong><span>Seed 1001</span></figcaption>
+          </figure>
+          <figure class="gallery-card" data-stage="posttrain" data-cat="ptfmb" hidden>
+            <div class="gallery-media">
+              <video muted loop playsinline preload="none" poster="assets/gallery/ptfmb__kuka_seed222-poster.jpg" data-src="assets/gallery/ptfmb__kuka_seed222.mp4" aria-label="KUKA–Allegro — Seed 222"></video>
+            </div>
+            <figcaption><strong>KUKA–Allegro</strong><span>Seed 222</span></figcaption>
+          </figure>
+          <figure class="gallery-card" data-stage="posttrain" data-cat="ptfmb" hidden>
+            <div class="gallery-media">
+              <video muted loop playsinline preload="none" poster="assets/gallery/ptfmb__rizon_seed222-poster.jpg" data-src="assets/gallery/ptfmb__rizon_seed222.mp4" aria-label="Flexiv–Sharpa — Seed 222"></video>
+            </div>
+            <figcaption><strong>Flexiv–Sharpa</strong><span>Seed 222</span></figcaption>
+          </figure>
+          <figure class="gallery-card" data-stage="posttrain" data-cat="ptfmb" hidden>
+            <div class="gallery-media">
+              <video muted loop playsinline preload="none" poster="assets/gallery/ptfmb__rizon_seed777-poster.jpg" data-src="assets/gallery/ptfmb__rizon_seed777.mp4" aria-label="Flexiv–Sharpa — Seed 777"></video>
+            </div>
+            <figcaption><strong>Flexiv–Sharpa</strong><span>Seed 777</span></figcaption>
+          </figure>
+          <figure class="gallery-card" data-stage="posttrain" data-cat="ptdish" hidden>
+            <div class="gallery-media">
+              <video muted loop playsinline preload="none" poster="assets/gallery/ptdish__kuka_seed1000-poster.jpg" data-src="assets/gallery/ptdish__kuka_seed1000.mp4" aria-label="KUKA–Allegro — Seed 1000"></video>
+            </div>
+            <figcaption><strong>KUKA–Allegro</strong><span>Seed 1000</span></figcaption>
+          </figure>
+          <figure class="gallery-card" data-stage="posttrain" data-cat="ptdish" hidden>
+            <div class="gallery-media">
+              <video muted loop playsinline preload="none" poster="assets/gallery/ptdish__kuka_seed1002-poster.jpg" data-src="assets/gallery/ptdish__kuka_seed1002.mp4" aria-label="KUKA–Allegro — Seed 1002"></video>
+            </div>
+            <figcaption><strong>KUKA–Allegro</strong><span>Seed 1002</span></figcaption>
+          </figure>
+          <figure class="gallery-card" data-stage="distill" data-cat="visfmb" hidden>
+            <div class="gallery-media">
+              <video muted loop playsinline preload="none" poster="assets/gallery/visfmb__kuka_seed1002-poster.jpg" data-src="assets/gallery/visfmb__kuka_seed1002.mp4" aria-label="KUKA–Allegro — DR scene · seed 1002"></video>
+            </div>
+            <figcaption><strong>KUKA–Allegro</strong><span>DR scene · seed 1002</span></figcaption>
+          </figure>
+          <figure class="gallery-card" data-stage="distill" data-cat="visfmb" hidden>
+            <div class="gallery-media">
+              <video muted loop playsinline preload="none" poster="assets/gallery/visfmb__kuka_seed777-poster.jpg" data-src="assets/gallery/visfmb__kuka_seed777.mp4" aria-label="KUKA–Allegro — DR scene · seed 777"></video>
+            </div>
+            <figcaption><strong>KUKA–Allegro</strong><span>DR scene · seed 777</span></figcaption>
+          </figure>
+          <figure class="gallery-card" data-stage="distill" data-cat="visfmb" hidden>
+            <div class="gallery-media">
+              <video muted loop playsinline preload="none" poster="assets/gallery/visfmb__rizon_seed222-poster.jpg" data-src="assets/gallery/visfmb__rizon_seed222.mp4" aria-label="Flexiv–Sharpa — DR scene · seed 222"></video>
+            </div>
+            <figcaption><strong>Flexiv–Sharpa</strong><span>DR scene · seed 222</span></figcaption>
+          </figure>
+          <figure class="gallery-card" data-stage="distill" data-cat="visfmb" hidden>
+            <div class="gallery-media">
+              <video muted loop playsinline preload="none" poster="assets/gallery/visfmb__rizon_seed999-poster.jpg" data-src="assets/gallery/visfmb__rizon_seed999.mp4" aria-label="Flexiv–Sharpa — DR scene · seed 999"></video>
+            </div>
+            <figcaption><strong>Flexiv–Sharpa</strong><span>DR scene · seed 999</span></figcaption>
+          </figure>
+          <figure class="gallery-card" data-stage="distill" data-cat="visdish" hidden>
+            <div class="gallery-media">
+              <video muted loop playsinline preload="none" poster="assets/gallery/visdish__kuka_seed222-poster.jpg" data-src="assets/gallery/visdish__kuka_seed222.mp4" aria-label="KUKA–Allegro — DR scene · seed 222"></video>
+            </div>
+            <figcaption><strong>KUKA–Allegro</strong><span>DR scene · seed 222</span></figcaption>
+          </figure>
+          <figure class="gallery-card" data-stage="distill" data-cat="visdish" hidden>
+            <div class="gallery-media">
+              <video muted loop playsinline preload="none" poster="assets/gallery/visdish__kuka_seed999-poster.jpg" data-src="assets/gallery/visdish__kuka_seed999.mp4" aria-label="KUKA–Allegro — DR scene · seed 999"></video>
+            </div>
+            <figcaption><strong>KUKA–Allegro</strong><span>DR scene · seed 999</span></figcaption>
+          </figure>
+          <figure class="gallery-card" data-stage="distill" data-cat="tactile" hidden>
+            <div class="gallery-media">
+              <video muted loop playsinline preload="none" poster="assets/gallery/tactile__rizon_seed1002-poster.jpg" data-src="assets/gallery/tactile__rizon_seed1002.mp4" aria-label="Flexiv–Sharpa — RGB + TacMap · seed 1002"></video>
+            </div>
+            <figcaption><strong>Flexiv–Sharpa</strong><span>RGB + TacMap · seed 1002</span></figcaption>
+          </figure>
+          <figure class="gallery-card" data-stage="distill" data-cat="tactile" hidden>
+            <div class="gallery-media">
+              <video muted loop playsinline preload="none" poster="assets/gallery/tactile__rizon_seed999-poster.jpg" data-src="assets/gallery/tactile__rizon_seed999.mp4" aria-label="Flexiv–Sharpa — RGB + TacMap · seed 999"></video>
+            </div>
+            <figcaption><strong>Flexiv–Sharpa</strong><span>RGB + TacMap · seed 999</span></figcaption>
+          </figure>
+          <figure class="gallery-card" data-stage="real" data-cat="realfmb" hidden>
+            <div class="gallery-media">
+              <video muted loop playsinline preload="none" poster="assets/gallery/realfmb__kuka_1160-poster.jpg" data-src="assets/gallery/realfmb__kuka_1160.mp4" aria-label="KUKA–Allegro — Vision-based insert"></video>
+            </div>
+            <figcaption><strong>KUKA–Allegro</strong><span>Vision-based insert</span></figcaption>
+          </figure>
+          <figure class="gallery-card" data-stage="real" data-cat="realfmb" hidden>
+            <div class="gallery-media">
+              <video muted loop playsinline preload="none" poster="assets/gallery/realfmb__kuka_star-poster.jpg" data-src="assets/gallery/realfmb__kuka_star.mp4" aria-label="KUKA–Allegro — Star peg"></video>
+            </div>
+            <figcaption><strong>KUKA–Allegro</strong><span>Star peg</span></figcaption>
+          </figure>
+          <figure class="gallery-card" data-stage="real" data-cat="realfmb" hidden>
+            <div class="gallery-media">
+              <video muted loop playsinline preload="none" poster="assets/gallery/realfmb__rizon_5824-poster.jpg" data-src="assets/gallery/realfmb__rizon_5824.mp4" aria-label="Flexiv–Sharpa — Visuo-tactile insert"></video>
+            </div>
+            <figcaption><strong>Flexiv–Sharpa</strong><span>Visuo-tactile insert</span></figcaption>
+          </figure>
+          <figure class="gallery-card" data-stage="real" data-cat="realdish" hidden>
+            <div class="gallery-media">
+              <video muted loop playsinline preload="none" poster="assets/gallery/realdish__kuka_5764-poster.jpg" data-src="assets/gallery/realdish__kuka_5764.mp4" aria-label="KUKA–Allegro — Teal plate"></video>
+            </div>
+            <figcaption><strong>KUKA–Allegro</strong><span>Teal plate</span></figcaption>
+          </figure>
+          <figure class="gallery-card" data-stage="real" data-cat="realdish" hidden>
+            <div class="gallery-media">
+              <video muted loop playsinline preload="none" poster="assets/gallery/realdish__kuka_red-poster.jpg" data-src="assets/gallery/realdish__kuka_red.mp4" aria-label="KUKA–Allegro — Red plate"></video>
+            </div>
+            <figcaption><strong>KUKA–Allegro</strong><span>Red plate</span></figcaption>
+          </figure>
+          <figure class="gallery-card" data-stage="real" data-cat="realdish" hidden>
+            <div class="gallery-media">
+              <video muted loop playsinline preload="none" poster="assets/gallery/realdish__kuka_5780_2-poster.jpg" data-src="assets/gallery/realdish__kuka_5780_2.mp4" aria-label="KUKA–Allegro — Teal plate · alt take"></video>
+            </div>
+            <figcaption><strong>KUKA–Allegro</strong><span>Teal plate · alt take</span></figcaption>
           </figure>
         </div>
       </section>
@@ -488,6 +690,88 @@
               <text x="12" y="45">100%</text><text x="30" y="325">0%</text>
             </svg>
             <p class="caption">Illustrative web placeholder — replace with the final ADEPT training-progress figure.</p>
+          </div>
+
+          <div class="plot-block reveal">
+            <div class="grasp-heading">
+              <p class="section-kicker">Real-world evaluation</p>
+              <h3>Per-stage success on hardware.</h3>
+              <p>
+                Cumulative per-stage success over 10 trials per condition — reaching
+                a stage requires succeeding at every stage before it. All policies
+                run zero-shot, with no real-world fine-tuning.
+              </p>
+            </div>
+            <div class="plot-grid">
+              <figure class="plot-card">
+                <div class="plot-head">
+                  <h4>KUKA–Allegro · FMB peg insertion</h4>
+                  <div class="plot-legend">
+                    <span class="plot-key plot-key-blue">Star peg</span>
+                    <span class="plot-key plot-key-green">Square + round</span>
+                  </div>
+                </div>
+                <div class="plot-svg" data-plot="kuka_fmb" role="img" aria-label="Step plot of cumulative per-stage success: star peg from 100 percent at reaching to 50 percent overall; square and round pegs from 100 to 30 percent"></div>
+              </figure>
+              <figure class="plot-card">
+                <div class="plot-head">
+                  <h4>Flexiv–Sharpa · FMB peg insertion</h4>
+                  <div class="plot-legend">
+                    <span class="plot-key plot-key-blue">Visuo-tactile</span>
+                    <span class="plot-key plot-key-green">Vision</span>
+                  </div>
+                </div>
+                <div class="plot-svg" data-plot="flexiv_fmb" role="img" aria-label="Step plot of cumulative per-stage success: visuo-tactile student from 100 percent to 80 percent overall; vision-only student from 100 to 30 percent"></div>
+              </figure>
+              <figure class="plot-card">
+                <div class="plot-head">
+                  <h4>KUKA–Allegro · dish placement</h4>
+                  <div class="plot-legend">
+                    <span class="plot-key plot-key-blue">Vision</span>
+                  </div>
+                </div>
+                <div class="plot-svg" data-plot="kuka_dish" role="img" aria-label="Step plot of cumulative per-stage success for dish placement: 100 percent at reaching to 60 percent overall"></div>
+              </figure>
+            </div>
+          </div>
+
+          <div class="grasp-analysis reveal">
+            <div class="grasp-heading">
+              <p class="section-kicker">Qualitative analysis</p>
+              <h3>Pre-training learns the repertoire.<br />Post-training <em>aligns</em> it to the downstream task.</h3>
+              <p>
+                Reposing pre-training learns a diverse repertoire of generic,
+                naturalistic grasps. Post-training never relearns how to grasp — it
+                refines that repertoire and aligns it to the downstream task.
+                Trained from scratch, RL still reaches the goal in simulation — but it
+                discovers whatever works: contorted, non-human grasps that would never
+                survive contact-rich deployment.
+              </p>
+            </div>
+            <div class="grasp-pairs">
+              <figure class="grasp-pair">
+                <div class="grasp-cell">
+                  <span class="grasp-chip grasp-chip-adept">With pre-training</span>
+                  <video muted loop playsinline preload="none" poster="assets/analysis/posttrain-777-poster.jpg" data-lazy-video data-src="assets/analysis/posttrain-777.mp4" aria-label="Post-trained policy inserting the peg with a natural fingertip grasp"></video>
+                </div>
+                <div class="grasp-cell">
+                  <span class="grasp-chip grasp-chip-scratch">From scratch</span>
+                  <video muted loop playsinline preload="none" poster="assets/analysis/scratch-env15-poster.jpg" data-lazy-video data-src="assets/analysis/scratch-env15.mp4" aria-label="From-scratch policy shoving the peg with the back of its knuckles"></video>
+                </div>
+                <figcaption>FMB insertion · KUKA–Allegro · same task, same success — different hands</figcaption>
+              </figure>
+              <figure class="grasp-pair">
+                <div class="grasp-cell">
+                  <span class="grasp-chip grasp-chip-adept">With pre-training</span>
+                  <video muted loop playsinline preload="none" poster="assets/analysis/posttrain-888-poster.jpg" data-lazy-video data-src="assets/analysis/posttrain-888.mp4" aria-label="Post-trained policy with a stable precision grasp"></video>
+                </div>
+                <div class="grasp-cell">
+                  <span class="grasp-chip grasp-chip-scratch">From scratch</span>
+                  <video muted loop playsinline preload="none" poster="assets/analysis/scratch-env191-poster.jpg" data-lazy-video data-src="assets/analysis/scratch-env191.mp4" aria-label="From-scratch policy pinning the peg with a contorted wrist press"></video>
+                </div>
+                <figcaption>FMB insertion · KUKA–Allegro · pre-trained grasp vs discovered contortion</figcaption>
+              </figure>
+            </div>
           </div>
         </div>
       </section>
