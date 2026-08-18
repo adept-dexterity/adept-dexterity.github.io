@@ -315,3 +315,73 @@
   }, { threshold: 0.35 });
   hosts.forEach((host) => io.observe(host));
 })();
+
+/* Pre-training primitive catalog */
+(() => {
+  const block = document.querySelector(".prim-block");
+  if (!block) return;
+  const META = {
+    "01": ["Cuboid", "50 \u00d7 100 \u00d7 100 mm"], "02": ["Cuboid", "50 \u00d7 50 \u00d7 100 mm"],
+    "03": ["Cuboid", "25 \u00d7 100 \u00d7 100 mm"], "04": ["Cuboid", "25 \u00d7 50 \u00d7 100 mm"],
+    "05": ["Cuboid", "25 \u00d7 25 \u00d7 100 mm"], "06": ["Cuboid", "10 \u00d7 100 \u00d7 100 mm"],
+    "07": ["Sphere", "100 mm diameter"], "08": ["Sphere", "50 mm diameter"],
+    "09": ["Capsule", "80 \u00d7 80 \u00d7 105 mm"], "10": ["Capsule", "80 \u00d7 80 \u00d7 90 mm"],
+    "11": ["Capsule", "80 \u00d7 80 \u00d7 180 mm"], "12": ["Capsule", "50 \u00d7 50 \u00d7 150 mm"],
+    "13": ["Capsule", "50 \u00d7 50 \u00d7 250 mm"], "14": ["Capsule", "20 \u00d7 20 \u00d7 220 mm"],
+    "15": ["Cone", "100 \u00d7 100 \u00d7 100 mm"], "16": ["Cone", "50 \u00d7 50 \u00d7 100 mm"],
+  };
+  const RIZON_MISSING = new Set(["03"]);
+  const tiles = [...block.querySelectorAll(".prim-tile")];
+  const video = block.querySelector("[data-prim-video]");
+  const rizonVideo = block.querySelector("[data-prim-video-rizon]");
+  const rizonPending = block.querySelector("[data-prim-pending]");
+  const numEl = block.querySelector("[data-prim-num]");
+  const nameEl = block.querySelector("[data-prim-name]");
+  const dimsEl = block.querySelector("[data-prim-dims]");
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let started = false;
+
+  const select = (n) => {
+    tiles.forEach((tile) => tile.classList.toggle("is-active", tile.dataset.n === n));
+    const meta = META[n];
+    numEl.textContent = n;
+    nameEl.textContent = meta[0];
+    dimsEl.textContent = meta[1];
+    video.src = "assets/primitives/vid/" + n + ".mp4";
+    const hasRizon = !RIZON_MISSING.has(n);
+    rizonPending.hidden = hasRizon;
+    rizonVideo.style.opacity = hasRizon ? "1" : "0.15";
+    if (hasRizon) {
+      rizonVideo.src = "assets/primitives/vid/" + n + "_rizon.mp4";
+    } else {
+      rizonVideo.removeAttribute("src");
+      rizonVideo.load();
+    }
+    if (reduced) {
+      video.controls = true;
+      if (hasRizon) rizonVideo.controls = true;
+      return;
+    }
+    video.play().catch(() => {});
+    if (hasRizon) rizonVideo.play().catch(() => {});
+  };
+
+  tiles.forEach((tile) => tile.addEventListener("click", () => { started = true; select(tile.dataset.n); }));
+  block.querySelector("[data-prim-scale]").addEventListener("change", (event) => {
+    block.querySelector("[data-prim-grid]").classList.toggle("is-scaled", event.target.checked);
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !started) { started = true; select("01"); return; }
+      if (!entry.isIntersecting) {
+        video.pause();
+        rizonVideo.pause();
+      } else if (started && !reduced) {
+        video.play().catch(() => {});
+        if (rizonVideo.getAttribute("src")) rizonVideo.play().catch(() => {});
+      }
+    });
+  }, { threshold: 0.2 });
+  io.observe(block);
+})();

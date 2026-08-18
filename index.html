@@ -14,6 +14,12 @@
       content="Accelerating Dexterity via Pre-Training and Post-Training using Reinforcement Learning."
     />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://adept-dexterity.github.io/" />
+    <meta property="og:image" content="https://adept-dexterity.github.io/assets/og-card.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://adept-dexterity.github.io/assets/og-card.jpg" />
     <title>ADEPT — Accelerating Dexterity</title>
     <link rel="icon" href="assets/favicon.svg?v=original-2" type="image/svg+xml" />
     <script>
@@ -36,9 +42,9 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css?v=wide-layout-8" />
-    <link rel="stylesheet" href="method-figure.css?v=6" />
+    <link rel="stylesheet" href="method-figure.css?v=7" />
     <script src="script.js?v=contents-1" defer></script>
-    <script src="method-figure.js?v=3" defer></script>
+    <script src="method-figure.js?v=4" defer></script>
   </head>
   <body>
     <main id="top">
@@ -89,8 +95,9 @@
           <span class="publication-button is-pending" aria-disabled="true" title="Coming soon">Code</span>
         </div>
         <p class="hero-deck reveal">
-          ADEPT turns reusable dexterous priors into precise, long-horizon skills
-          that transfer from simulation to real on high-DoF robot hand-arm systems.
+          ADEPT pre-trains one dexterous policy in simulation, post-trains it
+          into task specialists, and deploys them zero-shot on real high-DoF
+          arm–hand robots — from raw vision and touch, at human speed.
         </p>
       </section>
 
@@ -131,6 +138,11 @@
               the pretrained behavior, and distills them into perceptive policies
               for zero-shot sim-to-real deployment.
             </p>
+            <p>
+              The pre-training cost is paid once and amortized: each new task
+              post-trains in roughly 3B environment steps, where training a
+              single task from scratch takes around 9B — and rarely succeeds.
+            </p>
             <blockquote>
               <p>Learn dexterity once. Build every new behavior on top.</p>
             </blockquote>
@@ -142,6 +154,12 @@
             <p class="lead">
               Four stages carry a policy from broad simulated experience to
               contact-rich manipulation from raw visual and tactile perception.
+            </p>
+            <p>
+              Throughout, a joint-space geometric fabric sits between the policy and
+              the robot — enforcing joint limits and collision safety while exposing
+              the arm–hand system's full kinematic dexterity, with the same
+              controller running in simulation and on hardware.
             </p>
 
             <div class="method-figure" data-method-figure aria-label="ADEPT training pipeline, interactive figure">
@@ -185,7 +203,7 @@
                     <span class="mf-chip">Transport</span>
                   </div>
                   <div class="mf-flow">
-                    <span class="mf-m" data-tip="Pre-training observations (proprioception, object and goal state) and the reposing reward.">o<sub>pre</sub>, r<sub>pre</sub></span>
+                    <span class="mf-m" data-tip="Proprioception, an object point cloud, and the goal pose, plus the reposing reward — the point-cloud representation is what generalizes zero-shot to unseen objects.">o<sub>pre</sub>, r<sub>pre</sub></span>
                     <span class="mf-flow-arrow">→</span>
                     <span class="mf-pill"><span class="mf-m">&pi;<sub>pre</sub></span>
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-label="training, unfrozen"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0"></path></svg>
@@ -238,7 +256,7 @@
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-label="frozen"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
                     </span>
                     <span class="mf-flow-arrow">→</span>
-                    <span class="mf-m"><span data-tip="Behavior cloning from the state-based teacher, plus auxiliary losses that align the student's internal representations.">&#8466;<sub>BC</sub> + &#8466;<sub>aux</sub></span></span>
+                    <span class="mf-m"><span data-tip="Behavior cloning from the state-based teacher, plus an 8-keypoint object-pose prediction head on the shared stereo features — the auxiliary loss that teaches the student to perceive peg orientation.">&#8466;<sub>BC</sub> + &#8466;<sub>aux</sub></span></span>
                     <span class="mf-flow-arrow">→</span>
                     <span class="mf-pill"><span class="mf-m" data-tip="The perceptive student policy: acts from images alone, with no privileged state information.">&pi;<sub>student</sub></span>
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-label="training, unfrozen"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0"></path></svg>
@@ -266,13 +284,114 @@
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-label="frozen"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
                     </span>
                     <span class="mf-flow-arrow">→</span>
-                    <span data-tip="Full configuration-space commands for arm plus hand: 23 DoF on KUKA-Allegro, 29 DoF on Flexiv-Sharpa."><span class="mf-m">23-D</span> cspace actions</span>
+                    <span data-tip="Full configuration-space commands for arm plus hand: 23 DoF on KUKA-Allegro, 29 DoF on Flexiv-Sharpa. A joint-space geometric fabric turns them into safe, collision- and limit-aware motion — identical in simulation and on the real robot."><span class="mf-m">23-D</span> cspace actions</span>
                   </div>
                 </div>
               </section>
 
               <p class="mf-hint">Click the tabs to step through the pipeline · hover the dotted terms</p>
               <div class="mf-tooltip" role="tooltip" hidden></div>
+            </div>
+
+            <div class="prim-block reveal">
+              <p class="section-kicker">Pre-training diet</p>
+              <h3 class="prim-title">16 primitives. Every skill.</h3>
+              <p class="prim-lead">
+                The entire pre-training curriculum is 16 primitive shapes at
+                randomized scales — nothing else. Click a primitive to watch the
+                pretrained teacher repose it, and toggle true scale to see the
+                range one policy handles, from a 50&nbsp;mm sphere to a
+                250&nbsp;mm rod.
+              </p>
+              <div class="prim-layout">
+                <div class="prim-catalog">
+                  <div class="prim-grid" data-prim-grid aria-label="Pre-training primitives">
+                  <button class="prim-tile is-active" type="button" data-n="01" style="--s: 0.4" aria-label="Cuboid, 50 × 100 × 100 mm">
+                    <img src="assets/primitives/01.png" alt="" loading="lazy" decoding="async" />
+                    <span>01</span>
+                  </button>
+                  <button class="prim-tile" type="button" data-n="02" style="--s: 0.4" aria-label="Cuboid, 50 × 50 × 100 mm">
+                    <img src="assets/primitives/02.png" alt="" loading="lazy" decoding="async" />
+                    <span>02</span>
+                  </button>
+                  <button class="prim-tile" type="button" data-n="03" style="--s: 0.4" aria-label="Cuboid, 25 × 100 × 100 mm">
+                    <img src="assets/primitives/03.png" alt="" loading="lazy" decoding="async" />
+                    <span>03</span>
+                  </button>
+                  <button class="prim-tile" type="button" data-n="04" style="--s: 0.4" aria-label="Cuboid, 25 × 50 × 100 mm">
+                    <img src="assets/primitives/04.png" alt="" loading="lazy" decoding="async" />
+                    <span>04</span>
+                  </button>
+                  <button class="prim-tile" type="button" data-n="05" style="--s: 0.4" aria-label="Cuboid, 25 × 25 × 100 mm">
+                    <img src="assets/primitives/05.png" alt="" loading="lazy" decoding="async" />
+                    <span>05</span>
+                  </button>
+                  <button class="prim-tile" type="button" data-n="06" style="--s: 0.4" aria-label="Cuboid, 10 × 100 × 100 mm">
+                    <img src="assets/primitives/06.png" alt="" loading="lazy" decoding="async" />
+                    <span>06</span>
+                  </button>
+                  <button class="prim-tile" type="button" data-n="07" style="--s: 0.4" aria-label="Sphere, 100 mm diameter">
+                    <img src="assets/primitives/07.png" alt="" loading="lazy" decoding="async" />
+                    <span>07</span>
+                  </button>
+                  <button class="prim-tile" type="button" data-n="08" style="--s: 0.2" aria-label="Sphere, 50 mm diameter">
+                    <img src="assets/primitives/08.png" alt="" loading="lazy" decoding="async" />
+                    <span>08</span>
+                  </button>
+                  <button class="prim-tile" type="button" data-n="09" style="--s: 0.42" aria-label="Capsule, 80 × 80 × 105 mm">
+                    <img src="assets/primitives/09.png" alt="" loading="lazy" decoding="async" />
+                    <span>09</span>
+                  </button>
+                  <button class="prim-tile" type="button" data-n="10" style="--s: 0.36" aria-label="Capsule, 80 × 80 × 90 mm">
+                    <img src="assets/primitives/10.png" alt="" loading="lazy" decoding="async" />
+                    <span>10</span>
+                  </button>
+                  <button class="prim-tile" type="button" data-n="11" style="--s: 0.72" aria-label="Capsule, 80 × 80 × 180 mm">
+                    <img src="assets/primitives/11.png" alt="" loading="lazy" decoding="async" />
+                    <span>11</span>
+                  </button>
+                  <button class="prim-tile" type="button" data-n="12" style="--s: 0.6" aria-label="Capsule, 50 × 50 × 150 mm">
+                    <img src="assets/primitives/12.png" alt="" loading="lazy" decoding="async" />
+                    <span>12</span>
+                  </button>
+                  <button class="prim-tile" type="button" data-n="13" style="--s: 1.0" aria-label="Capsule, 50 × 50 × 250 mm">
+                    <img src="assets/primitives/13.png" alt="" loading="lazy" decoding="async" />
+                    <span>13</span>
+                  </button>
+                  <button class="prim-tile" type="button" data-n="14" style="--s: 0.88" aria-label="Capsule, 20 × 20 × 220 mm">
+                    <img src="assets/primitives/14.png" alt="" loading="lazy" decoding="async" />
+                    <span>14</span>
+                  </button>
+                  <button class="prim-tile" type="button" data-n="15" style="--s: 0.4" aria-label="Cone, 100 × 100 × 100 mm">
+                    <img src="assets/primitives/15.png" alt="" loading="lazy" decoding="async" />
+                    <span>15</span>
+                  </button>
+                  <button class="prim-tile" type="button" data-n="16" style="--s: 0.4" aria-label="Cone, 50 × 50 × 100 mm">
+                    <img src="assets/primitives/16.png" alt="" loading="lazy" decoding="async" />
+                    <span>16</span>
+                  </button>
+                  </div>
+                  <label class="prim-toggle">
+                    <input type="checkbox" data-prim-scale />
+                    True relative scale
+                  </label>
+                </div>
+                <figure class="prim-detail">
+                  <div class="prim-cell">
+                    <video muted loop playsinline preload="none" data-prim-video aria-label="KUKA-Allegro pretrained teacher reposing the selected primitive"></video>
+                    <span class="prim-robot">KUKA–Allegro</span>
+                  </div>
+                  <div class="prim-cell" data-prim-rizon-cell>
+                    <video muted loop playsinline preload="none" data-prim-video-rizon aria-label="Flexiv-Sharpa pretrained teacher reposing the selected primitive"></video>
+                    <span class="prim-robot">Flexiv–Sharpa</span>
+                    <span class="prim-pending" data-prim-pending hidden>Flexiv–Sharpa rollout re-render pending</span>
+                  </div>
+                  <figcaption>
+                    <strong><span data-prim-num>01</span> · <span data-prim-name>Cuboid</span></strong>
+                    <span data-prim-dims>50 × 100 × 100 mm</span>
+                  </figcaption>
+                </figure>
+              </div>
             </div>
 
             <div class="algorithm">
@@ -424,17 +543,17 @@
           </figure>
           <figure class="media-card reveal">
             <div class="media-placeholder tone-coral has-video">
-              <video muted loop playsinline preload="none" poster="assets/capabilities/recovery-poster.jpg" data-lazy-video data-src="assets/capabilities/recovery.mp4" aria-label="KUKA-Allegro re-grasping and re-inserting a peg after a human pulls it out"></video>
+              <video muted loop playsinline preload="none" poster="assets/capabilities/star-insertion-poster.jpg" data-lazy-video data-src="assets/capabilities/star-insertion.mp4" aria-label="KUKA-Allegro inserting the star peg, close-up"></video>
               <span class="media-index">03</span>
             </div>
-            <figcaption><strong>Emergent recovery</strong><span>Perturb · regrasp · continue</span></figcaption>
+            <figcaption><strong>FMB star-peg insertion</strong><span>Grasp · reorient · insert</span></figcaption>
           </figure>
           <figure class="media-card media-card-wide tactile-feature reveal">
             <div class="tactile-layout">
               <div class="tactile-copy">
                 <p class="section-kicker">Visuo-tactile</p>
                 <h3>Touch closes the loop.</h3>
-                <p>The 29-DoF Flexiv–Sharpa student fuses stereo RGB with per-finger Sharpa TacMap deformation and contact signals. The lower panels stream the tactile observations the policy acts on — they light up on contact.</p>
+                <p>The 29-DoF Flexiv–Sharpa student fuses stereo RGB with per-finger Sharpa TacMap deformation and contact signals. The lower panels stream the tactile observations the policy acts on — they light up on contact. In real deployment, touch is decisive: 8/10 overall versus 3/10 for the vision-only student on the same task. Without it, the policy cannot tell a grasp has succeeded and loops between grasping and regrasping.</p>
               </div>
               <div class="tactile-media">
                 <video muted loop playsinline preload="none" poster="assets/capabilities/tactile-combined-poster.jpg" data-lazy-video data-src="assets/capabilities/tactile-combined.mp4" aria-label="Visuo-tactile student: RGB viewport above per-finger tactile force panels"></video>
@@ -741,11 +860,11 @@
               <h3>Pre-training learns the repertoire.<br />Post-training <em>aligns</em> it to the downstream task.</h3>
               <p>
                 Reposing pre-training learns a diverse repertoire of generic,
-                naturalistic grasps. Post-training never relearns how to grasp — it
-                refines that repertoire and aligns it to the downstream task.
-                Trained from scratch, RL still reaches the goal in simulation — but it
-                discovers whatever works: contorted, non-human grasps that would never
-                survive contact-rich deployment.
+                naturalistic grasps. Post-training layers the task on top of that
+                prior rather than relearning manipulation from scratch — it refines
+                the repertoire and aligns it to the downstream task. Trained from
+                scratch, RL converges to whatever maximizes reward: contorted,
+                unnatural grasps that vary wildly across seeds.
               </p>
             </div>
             <div class="grasp-pairs">
