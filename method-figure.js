@@ -330,7 +330,7 @@
     "13": ["Capsule", "50 \u00d7 50 \u00d7 250 mm"], "14": ["Capsule", "20 \u00d7 20 \u00d7 220 mm"],
     "15": ["Cone", "100 \u00d7 100 \u00d7 100 mm"], "16": ["Cone", "50 \u00d7 50 \u00d7 100 mm"],
   };
-  const RIZON_MISSING = new Set(["03"]);
+  const RIZON_MISSING = new Set([]);
   const tiles = [...block.querySelectorAll(".prim-tile")];
   const video = block.querySelector("[data-prim-video]");
   const rizonVideo = block.querySelector("[data-prim-video-rizon]");

@@ -502,3 +502,9 @@ html[data-theme="dark"] .plot-block {
 
 /* Michigan Robotics logo: match NVIDIA's monochrome treatment in dark mode */
 html[data-theme="dark"] .michigan-logo img { content: url("assets/michigan-robotics-logo-dark.png"); }
+
+/* Gripper vs hand speed comparison */
+.speed-compare { margin-top: 30px; }
+
+/* Single-line section headings */
+.section-heading h2.h2-oneline { font-size: clamp(1.7rem, 2.9vw, 3.2rem); white-space: nowrap; }

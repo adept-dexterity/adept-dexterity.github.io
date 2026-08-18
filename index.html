@@ -42,9 +42,9 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css?v=wide-layout-9" />
-    <link rel="stylesheet" href="method-figure.css?v=7" />
+    <link rel="stylesheet" href="method-figure.css?v=10" />
     <script src="script.js?v=contents-1" defer></script>
-    <script src="method-figure.js?v=4" defer></script>
+    <script src="method-figure.js?v=5" defer></script>
   </head>
   <body>
     <main id="top">
@@ -241,8 +241,8 @@
 
               <section class="mf-panel" id="mf-panel-2" data-tone="light" role="tabpanel" aria-labelledby="mf-tab-2" hidden>
                 <div class="mf-media">
-                  <video muted loop playsinline preload="none" poster="assets/method/method-03-distill-poster.jpg" data-src="assets/method/method-03-distill.mp4" aria-label="Distilled vision student inserting a peg in a domain-randomized scene"></video>
-                  <span class="mf-media-caption">Domain-randomized stereo RGB</span>
+                  <video muted loop playsinline preload="none" poster="assets/method/method-03-distill-poster.jpg" data-src="assets/method/method-03-distill.mp4" aria-label="Wall of 18 distilled vision students inserting pegs across domain-randomized scenes"></video>
+                  <span class="mf-media-caption">Vision students · domain-randomized scenes</span>
                 </div>
                 <div class="mf-detail">
                   <span class="mf-tag">Raw perception</span>
@@ -568,7 +568,7 @@
         <div class="section-heading reveal">
           <div>
             <p class="section-kicker">Rollout gallery</p>
-            <h2>Individual rollouts,<br />task by task</h2>
+            <h2 class="h2-oneline">ADEPT Rollouts across Training Stages</h2>
           </div>
           <p>
             The uncut single rollouts behind every montage — sim teachers,
@@ -759,56 +759,41 @@
           <div class="section-heading reveal">
             <div>
               <p class="section-kicker">Results</p>
-              <h2>Learning that compounds</h2>
+              <h2 class="h2-oneline">Hands <em>vs. jaw grippers</em></h2>
             </div>
             <p>
-              ADEPT amortizes its dexterous foundation across downstream tasks and
-              unlocks fast, continuous manipulation on two distinct embodiments.
+              The staged FMB parallel-jaw pipeline relies on external fixtures and
+              multi-stage regrasp decomposition: 20–70 s per trial. ADEPT solves the
+              same benchmark as one continuous learned behavior on 23- and 29-DoF
+              arm–hand systems — 5–10 s per trial, a 2–14× speedup.
             </p>
           </div>
 
-          <div class="metrics reveal">
-            <div class="metric">
-              <span class="metric-value">2–14<span>×</span></span>
-              <p>faster execution</p>
-              <small>vs. the staged FMB pipeline</small>
+          <div class="speed-compare reveal">
+            <div class="grasp-pairs">
+              <figure class="grasp-pair">
+                <div class="grasp-cell">
+                  <span class="grasp-chip grasp-chip-scratch">FMB pipeline · ~70 s · 5× speed</span>
+                  <video muted loop playsinline preload="none" poster="assets/results/fmb-pipeline-70s-poster.jpg" data-lazy-video data-src="assets/results/fmb-pipeline-70s.mp4" aria-label="Parallel-jaw FMB pipeline episode with fixtures, 70 seconds, shown at 5x speed"></video>
+                </div>
+                <div class="grasp-cell">
+                  <span class="grasp-chip grasp-chip-adept">ADEPT · ~9 s · real-time</span>
+                  <video muted loop playsinline preload="none" poster="assets/results/adept-kuka-fmb-poster.jpg" data-lazy-video data-src="assets/results/adept-kuka-fmb.mp4" aria-label="ADEPT KUKA-Allegro vision student completing FMB insertion in 9 seconds, real-time"></video>
+                </div>
+                <figcaption>Same video length, different clocks: a 70 s parallel-jaw episode at 5× speed vs a 9 s KUKA–Allegro trial in real time</figcaption>
+              </figure>
+              <figure class="grasp-pair">
+                <div class="grasp-cell">
+                  <span class="grasp-chip grasp-chip-scratch">FMB pipeline · ~20 s · real-time</span>
+                  <video muted loop playsinline preload="none" poster="assets/results/fmb-pipeline-20s-poster.jpg" data-lazy-video data-src="assets/results/fmb-pipeline-20s.mp4" aria-label="Parallel-jaw FMB pipeline episode, 20 seconds, real-time"></video>
+                </div>
+                <div class="grasp-cell">
+                  <span class="grasp-chip grasp-chip-adept">ADEPT · ~5 s · real-time</span>
+                  <video muted loop playsinline preload="none" poster="assets/results/adept-flexiv-fmb-poster.jpg" data-lazy-video data-src="assets/results/adept-flexiv-fmb.mp4" aria-label="ADEPT Flexiv-Sharpa visuo-tactile student completing FMB insertion in 5 seconds, real-time"></video>
+                </div>
+                <figcaption>Both real-time: the pipeline's fastest 20 s episode vs a 5 s Flexiv–Sharpa visuo-tactile trial</figcaption>
+              </figure>
             </div>
-            <div class="metric">
-              <span class="metric-value">5–10<span>s</span></span>
-              <p>end-to-end behavior</p>
-              <small>one continuous learned policy</small>
-            </div>
-            <div class="metric">
-              <span class="metric-value">23<span>/</span>29</span>
-              <p>degrees of freedom</p>
-              <small>KUKA–Allegro · Flexiv–Sharpa</small>
-            </div>
-          </div>
-
-          <div class="chart-card reveal">
-            <div class="chart-header">
-              <div>
-                <p>Training efficiency</p>
-              <span>Downstream task progress over environment steps</span>
-              </div>
-              <div class="chart-legend"><span class="legend-adept">ADEPT</span><span class="legend-base">From scratch</span></div>
-            </div>
-            <svg class="chart" viewBox="0 0 900 380" role="img" aria-label="Placeholder chart comparing ADEPT with training from scratch">
-              <g class="grid-lines">
-                <line x1="70" y1="40" x2="70" y2="320" />
-                <line x1="70" y1="320" x2="860" y2="320" />
-                <line x1="70" y1="250" x2="860" y2="250" />
-                <line x1="70" y1="180" x2="860" y2="180" />
-                <line x1="70" y1="110" x2="860" y2="110" />
-                <line x1="70" y1="40" x2="860" y2="40" />
-              </g>
-              <path class="chart-area" d="M70 307 C150 280 200 200 290 150 S450 72 560 58 S760 48 860 45 L860 320 L70 320 Z" />
-              <path class="chart-line adept-line" d="M70 307 C150 280 200 200 290 150 S450 72 560 58 S760 48 860 45" />
-              <path class="chart-line base-line" d="M70 310 C180 305 260 288 350 250 S530 185 650 150 S780 126 860 112" />
-              <text x="70" y="355">0</text><text x="820" y="355">STEPS</text>
-              <text x="12" y="45">100%</text><text x="30" y="325">0%</text>
-            </svg>
-            <p class="caption">Illustrative web placeholder — replace with the final ADEPT training-progress figure.</p>
           </div>
 
           <div class="plot-block reveal">
