@@ -188,7 +188,7 @@
 
   stageButtons.forEach((b) => b.addEventListener("click", () => setStage(b.dataset.stage)));
   tagChips.forEach((chip) => chip.addEventListener("click", () => setTag(chip.dataset.cat)));
-  setStage("pretrain");
+  setStage("real");
 })();
 
 /* Native SVG step plots: per-stage real-world success (Table 4) */
