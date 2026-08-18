@@ -472,7 +472,7 @@ footer p:last-child { color: var(--muted); justify-self: end; }
 @media (min-width: 1101px) {
   .hero {
     margin-left: var(--contents-width);
-    min-height: 90vh;
+    min-height: auto;
     padding: clamp(48px, 6vh, 64px) var(--page-gutter) 76px;
     width: calc(100% - var(--contents-width));
   }
