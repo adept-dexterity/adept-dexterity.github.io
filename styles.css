@@ -495,7 +495,12 @@ footer p:last-child { color: var(--muted); justify-self: end; }
   .author-list { font-size: clamp(1.08rem, 1.45vw, 1.35rem); }
   .affiliation-lockup { margin-top: 20px; }
   .hero-actions { margin-top: 30px; }
-  .hero-deck { margin-top: 46px; }
+  .hero-deck {
+    margin-top: 46px;
+    max-width: var(--content-max);
+    text-align: left;
+    width: 100%;
+  }
   .content-wide {
     margin-left: calc(
       var(--contents-width) +
@@ -514,11 +519,6 @@ footer p:last-child { color: var(--muted); justify-self: end; }
 
 @media (min-width: 1900px) {
   :root { --content-max: 1500px; }
-  .hero-deck {
-    max-width: var(--content-max);
-    text-align: left;
-    width: 100%;
-  }
   .article-section > p:not(.section-kicker),
   .algorithm-heading > p:last-child,
   .section-heading > p,
