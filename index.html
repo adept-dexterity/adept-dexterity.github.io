@@ -41,7 +41,7 @@
       href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=wide-layout-27" />
+    <link rel="stylesheet" href="styles.css?v=wide-layout-29" />
     <link rel="stylesheet" href="method-figure.css?v=11" />
     <script src="script.js?v=contents-1" defer></script>
     <script src="method-figure.js?v=7" defer></script>
@@ -492,19 +492,20 @@
                     <span class="algorithm-index">01</span>
                     <strong>Pre-training</strong>
                   </figcaption>
-                  <pre tabindex="0" aria-label="ADEPT pre-training pseudocode"><code><span class="tok-keyword">def</span> <span class="tok-function">pretrain</span>(M_pre, fabric, adr):
+                  <pre tabindex="0" aria-label="ADEPT pre-training pseudocode"><code><span class="tok-keyword">def</span> <span class="tok-function">pre_train</span>(M_pre, fabric, adr):
     pi_pre, V_pre = <span class="tok-function">initialize_actor_critic</span>()
     ppo = PBT.<span class="tok-function">initialize_optimizer</span>()
 
-    <span class="tok-keyword">while not</span> <span class="tok-function">converged</span>(pi_pre):
+    <span class="tok-keyword">for</span> epochs <span class="tok-keyword">in</span> <span class="tok-function">range</span>(<span class="tok-number">0</span>, max_epochs):
         env = M_pre.<span class="tok-function">sample</span>(
             objects=<span class="tok-function">primitive_shapes</span>(count=<span class="tok-number">16</span>),
             scale=<span class="tok-string">"random"</span>, goal_pose=<span class="tok-string">"random"</span>,
         )
-        adr.<span class="tok-function">randomize</span>(env)
-        adr.<span class="tok-function">anneal_gravity</span>(<span class="tok-number">0.0</span>, <span class="tok-number">-9.81</span>)
+        <span class="tok-comment"># randomise physics params and gravity with an annealing schedule.</span>
+        adr.<span class="tok-function">randomise</span>(env)
         trajectories = []
 
+        <span class="tok-comment"># Generate simulation rollouts</span>
         <span class="tok-keyword">for</span> step <span class="tok-keyword">in</span> rollout_horizon:
             o_pre = env.<span class="tok-function">observe</span>()
             action = pi_pre.<span class="tok-function">sample</span>(o_pre)
@@ -532,7 +533,7 @@
 
     <span class="tok-keyword">while not</span> actor_distilled:
         o_post = M_post.<span class="tok-function">sample_observations</span>(adr_level=<span class="tok-number">20</span>)
-        a_teacher = pi_pre(<span class="tok-function">project_to_pretrain_obs</span>(o_post))
+        a_teacher = pi_pre(<span class="tok-function">project_to_pre_train_obs</span>(o_post))
         loss_bc = <span class="tok-function">distillation_loss</span>(pi_post(o_post), a_teacher)
         <span class="tok-function">minimize</span>(loss_bc, parameters=pi_post)
 
@@ -551,7 +552,7 @@
     clip_eps = <span class="tok-function">linear_decay</span>(<span class="tok-number">0.20</span>, <span class="tok-number">0.05</span>)
     critic_lr = <span class="tok-number">5e-5</span>
 
-    <span class="tok-keyword">while not</span> <span class="tok-function">converged</span>(pi_post):
+    <span class="tok-keyword">for</span> epochs <span class="tok-keyword">in</span> <span class="tok-function">range</span>(<span class="tok-number">0</span>, max_epochs):
         trajectories = <span class="tok-function">rollout</span>(pi_post, M_post, fabric)
         advantages = <span class="tok-function">GAE</span>(trajectories, V_post)
         pi_post, V_post = <span class="tok-function">conservative_PPO</span>(
