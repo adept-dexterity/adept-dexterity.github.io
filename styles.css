@@ -708,7 +708,7 @@ footer p:last-child { color: var(--muted); justify-self: end; }
   }
 }
 
-@media (min-width: 1101px) and (max-width: 1600px) {
+@media (min-width: 1101px) and (max-width: 1899px) {
   :root {
     --desktop-scale: .86;
     --contents-width: calc(clamp(210px, 15vw, 238px) * var(--desktop-scale));
