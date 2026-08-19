@@ -42,9 +42,9 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css?v=wide-layout-27" />
-    <link rel="stylesheet" href="method-figure.css?v=10" />
+    <link rel="stylesheet" href="method-figure.css?v=11" />
     <script src="script.js?v=contents-1" defer></script>
-    <script src="method-figure.js?v=5" defer></script>
+    <script src="method-figure.js?v=7" defer></script>
   </head>
   <body>
     <main id="top">
@@ -234,6 +234,10 @@
                   <span class="mf-num">04</span>
                   <span class="mf-tab-title">Real world</span>
                 </button>
+                <button class="mf-tab" id="mf-tab-4" data-tone="light" type="button" role="tab" aria-selected="false" aria-controls="mf-panel-4" tabindex="-1">
+                  <span class="mf-num">05</span>
+                  <span class="mf-tab-title">Emergent dexterity</span>
+                </button>
               </div>
 
               <section class="mf-panel" id="mf-panel-0" data-tone="dark" role="tabpanel" aria-labelledby="mf-tab-0">
@@ -321,8 +325,8 @@
 
               <section class="mf-panel" id="mf-panel-3" data-tone="blue" role="tabpanel" aria-labelledby="mf-tab-3" hidden>
                 <div class="mf-media">
-                  <video muted loop playsinline preload="none" poster="assets/method/method-04-poster.jpg" data-src="assets/method/method-04-real.mp4" aria-label="Real KUKA-Allegro robot performing vision-based peg insertion"></video>
-                  <span class="mf-media-caption">Zero-shot · KUKA–Allegro</span>
+                  <video muted loop playsinline preload="none" poster="assets/method/method-04-real-poster.jpg" data-src="assets/method/method-04-real.mp4" aria-label="Zoom out from four real-world rollouts to a wall of sixteen: FMB insertion and dish placement on KUKA-Allegro and Flexiv-Sharpa"></video>
+                  <span class="mf-media-caption">Zero-shot · 16 real-world rollouts</span>
                 </div>
                 <div class="mf-detail">
                   <span class="mf-tag">Sim to real</span>
@@ -339,6 +343,34 @@
                     </span>
                     <span class="mf-flow-arrow">→</span>
                     <span data-tip="Full configuration-space commands for arm plus hand: 23 DoF on KUKA-Allegro, 29 DoF on Flexiv-Sharpa. A joint-space geometric fabric turns them into safe, collision- and limit-aware motion — identical in simulation and on the real robot."><span class="mf-m">23-D</span> cspace actions</span>
+                  </div>
+                </div>
+              </section>
+
+              <section class="mf-panel" id="mf-panel-4" data-tone="light" role="tabpanel" aria-labelledby="mf-tab-4" hidden>
+                <div class="mf-media-stack">
+                  <div class="mf-media">
+                    <video muted loop playsinline preload="none" poster="assets/method/method-05-kuka-dexterity-poster.jpg" data-src="assets/method/method-05-kuka-dexterity.mp4" aria-label="Close-up of simulated KUKA-Allegro hands discovering dexterous insertion strategies across parallel environments"></video>
+                    <span class="mf-media-caption">KUKA–Allegro</span>
+                  </div>
+                  <div class="mf-media">
+                    <video muted loop playsinline preload="none" poster="assets/method/method-05-sharpa-dexterity-poster.jpg" data-src="assets/method/method-05-sharpa-dexterity.mp4" aria-label="Close-up of simulated Flexiv-Sharpa fingertips manipulating a peg at the board"></video>
+                    <span class="mf-media-caption">Flexiv–Sharpa</span>
+                  </div>
+                </div>
+                <div class="mf-detail">
+                  <span class="mf-tag">No demonstrations</span>
+                  <p>
+                    None of this is scripted or demonstrated. Reposing rewards over the
+                    <span data-tip="The geometric fabric drives the full joint configuration space, so the policy commands every arm and finger joint rather than a low-dimensional grasp subspace.">full kinematic dexterity</span>
+                    of the hand let strategies emerge on their own — and post-training
+                    refines them into task-aligned skill.
+                  </p>
+                  <div class="mf-chips" aria-label="Emergent behaviors">
+                    <span class="mf-chip">Natural grasps</span>
+                    <span class="mf-chip">In-hand reorient</span>
+                    <span class="mf-chip">Finger gaiting</span>
+                    <span class="mf-chip">Flip + regrasp</span>
                   </div>
                 </div>
               </section>
