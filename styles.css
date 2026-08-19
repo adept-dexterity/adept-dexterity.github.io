@@ -724,6 +724,7 @@ footer p:last-child { color: var(--muted); justify-self: end; }
     font-size: clamp(2.25rem, calc(3.1vw * var(--desktop-scale)), 3.8rem);
   }
   .hero-title-lockup,
+  .hero-authors,
   .hero-deck {
     margin-left: calc(
       (100vw - min(1600px, 97vw)) / 2 +
@@ -745,8 +746,9 @@ footer p:last-child { color: var(--muted); justify-self: end; }
   }
   .hero-authors {
     margin-top: calc(46px * var(--desktop-scale));
-    max-width: calc(1050px * var(--desktop-scale));
+    max-width: none;
   }
+  .author-list { max-width: 100%; width: 100%; }
   .affiliation-lockup {
     gap: calc(30px * var(--desktop-scale));
     margin-top: calc(20px * var(--desktop-scale));
