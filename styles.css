@@ -410,7 +410,7 @@ blockquote p { margin: 0; }
 
 .overview-callout { margin-bottom: 48px; }
 .article-section#overview { margin-bottom: clamp(72px, 6vw, 96px); }
-.article-section .overview-title { margin-bottom: 30px; }
+.article-section .overview-title { margin-bottom: 84px; }
 .overview-pipeline {
   align-items: center;
   display: grid;
@@ -541,7 +541,7 @@ html[data-theme="dark"] .overview-pipeline-detail {
 
 @media (max-width: 620px) {
   .overview-callout { margin-bottom: 38px; }
-  .article-section .overview-title { margin-bottom: 28px; }
+  .article-section .overview-title { margin-bottom: 56px; }
   .overview-pipeline {
     gap: 0;
     grid-template-columns: 1fr;
