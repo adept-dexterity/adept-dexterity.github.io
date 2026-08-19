@@ -812,9 +812,9 @@ footer p:last-child { color: var(--muted); justify-self: end; }
   .overview-pipeline {
     grid-template-columns:
       minmax(calc(52px * var(--desktop-scale)), 1fr)
-      minmax(calc(240px * var(--desktop-scale)), calc(390px * var(--desktop-scale)))
+      minmax(calc(240px * var(--desktop-scale)), calc(280px * var(--desktop-scale)))
       minmax(calc(52px * var(--desktop-scale)), 1fr)
-      minmax(calc(240px * var(--desktop-scale)), calc(390px * var(--desktop-scale)))
+      minmax(calc(240px * var(--desktop-scale)), calc(280px * var(--desktop-scale)))
       minmax(calc(52px * var(--desktop-scale)), 1fr);
     margin-bottom: calc(54px * var(--desktop-scale));
   }
