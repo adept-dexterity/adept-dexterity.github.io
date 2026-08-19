@@ -810,6 +810,10 @@ footer p:last-child { color: var(--muted); justify-self: end; }
     margin-bottom: calc(170px * var(--desktop-scale));
     padding-top: calc(25px * var(--desktop-scale));
   }
+  .article-section#overview > p:not(.section-kicker) {
+    max-width: none;
+    width: 100%;
+  }
   .article-section .overview-title {
     margin-bottom: calc(84px * var(--desktop-scale));
   }
