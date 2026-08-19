@@ -404,7 +404,7 @@ blockquote p { margin: 0; }
 .tok-comment { color: var(--code-comment); font-style: italic; }
 
 .overview-callout { margin-bottom: 48px; }
-.article-section#overview { margin-bottom: clamp(36px, 3.5vw, 52px); }
+.article-section#overview { margin-bottom: clamp(72px, 6vw, 96px); }
 .article-section .overview-title { margin-bottom: 30px; }
 .overview-pipeline {
   align-items: center;
@@ -576,7 +576,7 @@ html[data-theme="dark"] .overview-pipeline-detail {
   }
 }
 
-.capabilities { padding-bottom: clamp(72px, 6vw, 96px); scroll-margin-top: 90px; }
+.capabilities { padding-bottom: 160px; scroll-margin-top: 90px; }
 .section-heading { align-items: end; border-top: 1px solid var(--line); display: grid; gap: 8vw; grid-template-columns: 1.2fr .8fr; padding: 25px 0 55px; }
 .section-heading h2 { margin: 0; }
 .section-heading > p { color: var(--muted); font-size: .88rem; margin: 0 0 8px; max-width: 470px; }
