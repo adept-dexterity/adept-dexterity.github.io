@@ -396,8 +396,16 @@
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        if (!video.dataset.started) { video.muted = true; video.dataset.started = "1"; }
-        video.play().catch(() => {});
+        if (!video.dataset.started) {
+          video.dataset.started = "1";
+          video.muted = false;
+          video.play().catch(() => {
+            video.muted = true;
+            video.play().catch(() => {});
+          });
+        } else {
+          video.play().catch(() => {});
+        }
       } else {
         video.pause();
       }
