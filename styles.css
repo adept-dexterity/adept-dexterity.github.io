@@ -705,6 +705,106 @@ footer p:last-child { color: var(--muted); justify-self: end; }
   }
 }
 
+@media (min-width: 1101px) and (max-width: 1600px) {
+  :root {
+    --desktop-scale: .86;
+    --contents-width: calc(clamp(210px, 15vw, 238px) * var(--desktop-scale));
+    --page-gutter: calc(clamp(28px, 3.2vw, 64px) * var(--desktop-scale));
+    --content-max: calc(clamp(1500px, 84vw, 1800px) * var(--desktop-scale));
+  }
+
+  html { font-size: calc(100% * var(--desktop-scale)); }
+  body { font-size: calc(16px * var(--desktop-scale)); }
+
+  .hero {
+    padding-bottom: calc(76px * var(--desktop-scale));
+    padding-top: calc(clamp(48px, 6vh, 64px) * var(--desktop-scale));
+  }
+  .hero h1 {
+    font-size: clamp(2.25rem, calc(3.1vw * var(--desktop-scale)), 3.8rem);
+  }
+  .hero-title-lockup,
+  .hero-deck {
+    margin-left: calc(
+      (100vw - min(1600px, 97vw)) / 2 +
+      calc(clamp(36px, 4vw, 64px) * var(--desktop-scale)) -
+      var(--page-gutter)
+    );
+    width: min(
+      calc(1120px * var(--desktop-scale)),
+      calc(
+        min(1600px, 97vw) -
+        var(--contents-width) -
+        calc(clamp(36px, 4vw, 64px) * var(--desktop-scale))
+      )
+    );
+  }
+  .hero-title-lockup .theme-toggle {
+    left: calc(100% + calc(16px * var(--desktop-scale)));
+    top: calc(8px * var(--desktop-scale));
+  }
+  .hero-authors {
+    margin-top: calc(46px * var(--desktop-scale));
+    max-width: calc(1050px * var(--desktop-scale));
+  }
+  .affiliation-lockup {
+    gap: calc(30px * var(--desktop-scale));
+    margin-top: calc(20px * var(--desktop-scale));
+  }
+  .affiliation-logo { min-height: calc(58px * var(--desktop-scale)); }
+  .nvidia-logo img { width: calc(210px * var(--desktop-scale)); }
+  .michigan-logo-crop {
+    height: calc(50px * var(--desktop-scale));
+    width: calc(202px * var(--desktop-scale));
+  }
+  .michigan-logo img {
+    transform: translateX(calc(-33px * var(--desktop-scale)));
+    width: calc(235px * var(--desktop-scale));
+  }
+  .affiliation-divider { height: calc(54px * var(--desktop-scale)); }
+  .hero-actions { margin-top: calc(30px * var(--desktop-scale)); }
+  .hero-deck { margin-top: calc(46px * var(--desktop-scale)); }
+
+  .article-shell {
+    gap: calc(clamp(36px, 4vw, 64px) * var(--desktop-scale));
+    grid-template-columns: var(--contents-width) minmax(0, calc(1120px * var(--desktop-scale)));
+  }
+  .contents {
+    padding: 0 calc(24px * var(--desktop-scale)) calc(10px * var(--desktop-scale)) calc(8px * var(--desktop-scale));
+    top: calc((clamp(48px, 6vh, 64px) + 6px) * var(--desktop-scale));
+  }
+  .contents > p {
+    margin-bottom: calc(24px * var(--desktop-scale));
+    padding-left: calc(24px * var(--desktop-scale));
+  }
+  .contents ol { height: calc(clamp(280px, 42vh, 440px) * var(--desktop-scale)); }
+  .contents li { padding-left: calc(24px * var(--desktop-scale)); }
+
+  .content-wide,
+  .feature-film {
+    margin-left: calc(
+      (100vw - min(1600px, 97vw)) / 2 +
+      var(--contents-width) +
+      calc(clamp(36px, 4vw, 64px) * var(--desktop-scale))
+    );
+    margin-right: 0;
+    max-width: none;
+    width: min(
+      calc(1120px * var(--desktop-scale)),
+      calc(
+        min(1600px, 97vw) -
+        var(--contents-width) -
+        calc(clamp(36px, 4vw, 64px) * var(--desktop-scale))
+      )
+    );
+  }
+  .feature-film { margin-bottom: calc(100px * var(--desktop-scale)); }
+  .article-section {
+    margin-bottom: calc(170px * var(--desktop-scale));
+    padding-top: calc(25px * var(--desktop-scale));
+  }
+}
+
 @media (min-width: 1900px) {
   :root { --content-max: 1500px; }
   .article-section > p:not(.section-kicker),
