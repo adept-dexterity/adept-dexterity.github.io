@@ -250,11 +250,14 @@ a.publication-button:hover { background: var(--ink); color: var(--paper-light); 
   z-index: 60;
 }
 .contents > p {
-  color: var(--muted);
+  border: 1.5px solid var(--ink);
+  border-radius: 6px;
+  color: var(--ink);
+  display: inline-block;
   font: 400 .88rem/1 var(--mono);
   letter-spacing: .13em;
-  margin: 0 0 24px;
-  padding-left: 24px;
+  margin: 0 0 24px 24px;
+  padding: 5px 9px 4px;
   text-transform: uppercase;
 }
 .contents ol {
@@ -778,7 +781,8 @@ footer p:last-child { color: var(--muted); justify-self: end; }
   }
   .contents > p {
     margin-bottom: calc(24px * var(--desktop-scale));
-    padding-left: calc(24px * var(--desktop-scale));
+    margin-left: calc(24px * var(--desktop-scale));
+    padding: calc(5px * var(--desktop-scale)) calc(9px * var(--desktop-scale)) calc(4px * var(--desktop-scale));
   }
   .contents ol { height: calc(clamp(280px, 42vh, 440px) * var(--desktop-scale)); }
   .contents li { padding-left: calc(24px * var(--desktop-scale)); }
