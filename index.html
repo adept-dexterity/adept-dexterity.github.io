@@ -41,7 +41,7 @@
       href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=wide-layout-11" />
+    <link rel="stylesheet" href="styles.css?v=wide-layout-20" />
     <link rel="stylesheet" href="method-figure.css?v=10" />
     <script src="script.js?v=contents-1" defer></script>
     <script src="method-figure.js?v=5" defer></script>
@@ -126,7 +126,26 @@
         <article class="article">
           <section id="overview" class="article-section reveal">
             <p class="section-kicker">The idea</p>
-            <h2>A faster path to <em>general dexterity.</em></h2>
+            <h2 class="overview-title">A faster path to <em>general dexterity.</em></h2>
+            <div class="overview-pipeline" role="img" aria-label="Setting the ground up for dexterity leads into pre-training with reinforcement learning in simulation; learning foundational dexterity leads to post-training with reinforcement learning in simulation; downstream skill acquisition follows">
+              <span class="overview-pipeline-arrow" aria-hidden="true">
+                <span class="overview-pipeline-arrow-label">Setting the ground up for dexterity</span>
+              </span>
+              <div class="overview-pipeline-block">
+                <span class="overview-pipeline-title">Pre-training</span>
+                <span class="overview-pipeline-detail">RL in simulation</span>
+              </div>
+              <span class="overview-pipeline-arrow" aria-hidden="true">
+                <span class="overview-pipeline-arrow-label">Learning foundational dexterity</span>
+              </span>
+              <div class="overview-pipeline-block">
+                <span class="overview-pipeline-title">Post-training</span>
+                <span class="overview-pipeline-detail">RL in simulation</span>
+              </div>
+              <span class="overview-pipeline-arrow" aria-hidden="true">
+                <span class="overview-pipeline-arrow-label">Downstream skill acquisition</span>
+              </span>
+            </div>
             <p class="lead">
               Dexterous robots repeatedly need the same core abilities—reach,
               grasp, lift, reorient, and transport. Yet conventional RL learns
@@ -143,10 +162,9 @@
               post-trains in roughly 3B environment steps, where training a
               single task from scratch takes around 9B — and rarely succeeds.
             </p>
-            <blockquote>
+            <blockquote class="overview-callout">
               <p>Learn dexterity once. Build every new behavior on top.</p>
             </blockquote>
-
             <div id="post-training-sequence" class="post-training-sequence" role="list" aria-label="Dexterous manipulation sequence">
               <figure class="post-training-frame" role="listitem">
                 <img
