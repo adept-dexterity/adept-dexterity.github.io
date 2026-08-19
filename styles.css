@@ -404,6 +404,7 @@ blockquote p { margin: 0; }
 .tok-comment { color: var(--code-comment); font-style: italic; }
 
 .overview-callout { margin-bottom: 48px; }
+.article-section#overview { margin-bottom: clamp(72px, 6vw, 96px); }
 .article-section .overview-title { margin-bottom: 30px; }
 .overview-pipeline {
   align-items: center;
@@ -435,8 +436,10 @@ html[data-theme="dark"] .overview-pipeline-block {
 .overview-pipeline-title { font: 400 clamp(1.6rem, 2.15vw, 2.05rem)/1.1 var(--serif); }
 .overview-pipeline-detail {
   --pipeline-detail-halo-inner: rgba(17, 19, 15, .24);
+  --pipeline-detail-halo-inner-off: rgba(17, 19, 15, 0);
   --pipeline-detail-halo-outer: rgba(17, 19, 15, .12);
-  animation: pipeline-detail-halo-flicker 3.2s steps(1, end) infinite;
+  --pipeline-detail-halo-outer-off: rgba(17, 19, 15, 0);
+  animation: pipeline-detail-halo-pulse 6.4s ease-in-out infinite;
   color: #11130f;
   font: 300 .9rem/1.5 var(--mono);
   letter-spacing: .05em;
@@ -485,15 +488,19 @@ html[data-theme="dark"] .overview-pipeline-block {
 html[data-theme="dark"] .overview-pipeline-arrow { color: var(--lime); }
 html[data-theme="dark"] .overview-pipeline-detail {
   --pipeline-detail-halo-inner: rgba(200, 240, 75, .38);
+  --pipeline-detail-halo-inner-off: rgba(200, 240, 75, 0);
   --pipeline-detail-halo-outer: rgba(200, 240, 75, .18);
+  --pipeline-detail-halo-outer-off: rgba(200, 240, 75, 0);
   color: var(--lime);
 }
 
-@keyframes pipeline-detail-halo-flicker {
-  0%, 10%, 13%, 46%, 50%, 81%, 84%, 100% {
+@keyframes pipeline-detail-halo-pulse {
+  0%, 100% {
+    text-shadow: 0 0 0 var(--pipeline-detail-halo-inner-off), 0 0 0 var(--pipeline-detail-halo-outer-off);
+  }
+  45%, 55% {
     text-shadow: 0 0 8px var(--pipeline-detail-halo-inner), 0 0 18px var(--pipeline-detail-halo-outer);
   }
-  11%, 12%, 47%, 49%, 82%, 83% { text-shadow: none; }
 }
 
 .post-training-sequence {
