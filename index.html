@@ -548,15 +548,15 @@
 
     <span class="tok-comment"># C. Add downstream behavior with conservative PPO.</span>
     <span class="tok-function">unfreeze</span>(pi_post)
-    actor_lr = <span class="tok-function">linear_decay</span>(<span class="tok-number">1e-3</span>, <span class="tok-number">1e-5</span>)
-    clip_eps = <span class="tok-function">linear_decay</span>(<span class="tok-number">0.20</span>, <span class="tok-number">0.05</span>)
+    actor_lr = <span class="tok-number">1e-5</span>
+    clips_eps = <span class="tok-number">0.05</span>
     critic_lr = <span class="tok-number">5e-5</span>
 
     <span class="tok-keyword">for</span> epochs <span class="tok-keyword">in</span> <span class="tok-function">range</span>(<span class="tok-number">0</span>, max_epochs):
         trajectories = <span class="tok-function">rollout</span>(pi_post, M_post, fabric)
         advantages = <span class="tok-function">GAE</span>(trajectories, V_post)
         pi_post, V_post = <span class="tok-function">conservative_PPO</span>(
-            trajectories, advantages, actor_lr, critic_lr, clip_eps
+            trajectories, advantages, actor_lr, critic_lr, clips_eps
         )
         M_post.adr.<span class="tok-function">advance_if_ready</span>(<span class="tok-function">success_rate</span>(trajectories))
 
