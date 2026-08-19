@@ -337,7 +337,7 @@ html[data-theme="dark"] .grasp-analysis { --grasp-green: #c8f04b; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin-bottom: 34px;
-  row-gap: clamp(14px, 1.2vw, 22px);
+  row-gap: 14px;
 }
 .grasp-heading .section-kicker { color: var(--muted); grid-column: 1 / -1; margin-bottom: 0; }
 .grasp-heading h3 {
