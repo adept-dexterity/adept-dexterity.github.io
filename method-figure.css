@@ -431,6 +431,9 @@ html[data-theme="dark"] .plot-block {
   position: relative;
   transition: border-color 150ms ease;
 }
+@media (min-width: 901px) {
+  .prim-tile { aspect-ratio: 1.19 / 1; }
+}
 .prim-tile img {
   display: block;
   height: 100%;
