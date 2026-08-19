@@ -492,19 +492,20 @@
                     <span class="algorithm-index">01</span>
                     <strong>Pre-training</strong>
                   </figcaption>
-                  <pre tabindex="0" aria-label="ADEPT pre-training pseudocode"><code><span class="tok-keyword">def</span> <span class="tok-function">pretrain</span>(M_pre, fabric, adr):
+                  <pre tabindex="0" aria-label="ADEPT pre-training pseudocode"><code><span class="tok-keyword">def</span> <span class="tok-function">pre_train</span>(M_pre, fabric, adr):
     pi_pre, V_pre = <span class="tok-function">initialize_actor_critic</span>()
     ppo = PBT.<span class="tok-function">initialize_optimizer</span>()
 
-    <span class="tok-keyword">while not</span> <span class="tok-function">converged</span>(pi_pre):
+    <span class="tok-keyword">for</span> epochs <span class="tok-keyword">in</span> <span class="tok-function">range</span>(<span class="tok-number">0</span>, max_epochs):
         env = M_pre.<span class="tok-function">sample</span>(
             objects=<span class="tok-function">primitive_shapes</span>(count=<span class="tok-number">16</span>),
             scale=<span class="tok-string">"random"</span>, goal_pose=<span class="tok-string">"random"</span>,
         )
-        adr.<span class="tok-function">randomize</span>(env)
-        adr.<span class="tok-function">anneal_gravity</span>(<span class="tok-number">0.0</span>, <span class="tok-number">-9.81</span>)
+        <span class="tok-comment"># randomise physics params and gravity with an annealing schedule.</span>
+        adr.<span class="tok-function">randomise</span>(env)
         trajectories = []
 
+        <span class="tok-comment"># Generate simulation rollouts</span>
         <span class="tok-keyword">for</span> step <span class="tok-keyword">in</span> rollout_horizon:
             o_pre = env.<span class="tok-function">observe</span>()
             action = pi_pre.<span class="tok-function">sample</span>(o_pre)
