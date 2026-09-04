@@ -514,3 +514,13 @@ html[data-theme="dark"] .michigan-logo img { content: url("assets/michigan-robot
 
 /* Stage 5: stacked emergent-dexterity media */
 .mf-media-stack { align-content: start; display: grid; gap: 10px; }
+
+/* Venue line inside the hero title */
+.hero-authors { margin-top: 26px; }
+.title-venue {
+  display: block;
+  font: 400 clamp(1.25rem, 1.7vw, 1.7rem)/1.4 var(--serif);
+  letter-spacing: 0;
+  margin-top: 20px;
+}
+.paper-venue { color: var(--muted); font: 400 .72rem/1.5 var(--mono); letter-spacing: .08em; margin: 14px 0 0; text-transform: uppercase; }
