@@ -214,7 +214,7 @@
   overflow: hidden;
   position: relative;
 }
-.film-frame video { display: block; height: 100%; object-fit: cover; width: 100%; }
+.film-frame video { display: block; height: 100%; object-fit: contain; width: 100%; }
 
 /* Populated capability cards */
 .media-card .media-placeholder.has-video { aspect-ratio: 16 / 9; }
